@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- background removed so container color shows through -->
+  <g fill="none" stroke="#2d3748" stroke-width="2">
+    <ellipse cx="60" cy="50" rx="28" ry="16"/>
+    <circle cx="60" cy="50" r="6"/>
+    <path d="M20 96 L100 96"/>
+  </g>
+</svg>

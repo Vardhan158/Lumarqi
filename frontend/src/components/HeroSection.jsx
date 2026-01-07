@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Reveal from "./Reveal";
 import WhyChoose from "./WhyChoose";
 import Footer from "./Footer";
+// Note: replaced animated slat with static service icons
 
 // Helper function for client-side navigation
 const navigateTo = (path) => {
@@ -31,7 +32,7 @@ export default function HeroSection() {
       title: "Strategy & Advisory",
       link: "/services/strategy-advisory",
       bg: "bg-indigo-50",
-      img: "https://images.unsplash.com/photo-1526378723306-0b0b0c4b0b62?auto=format&fit=crop&w=800&q=60",
+      img: "/assets/service-1.svg",
       items: [
         { label: "Analytics Roadmap", link: "/services/strategy-advisory/analytics-roadmap" },
         { label: "Data Strategy", link: "/services/strategy-advisory/data-strategy" },
@@ -42,7 +43,7 @@ export default function HeroSection() {
       title: "Engineer Your Data",
       link: "/services/engineer-your-data",
       bg: "bg-teal-50",
-      img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=60",
+      img: "/assets/service-2.svg",
       items: [
         { label: "Data Modernization", link: "/services/engineer-your-data/data-modernization" },
         { label: "Data Foundation", link: "/services/engineer-your-data/data-foundation" },
@@ -53,7 +54,7 @@ export default function HeroSection() {
       title: "Differentiate with AI/ML",
       link: "/services/ai-ml",
       bg: "bg-cyan-50",
-      img: "https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&w=800&q=60",
+      img: "/assets/service-3.svg",
       items: [
         { label: "Data Science", link: "/services/ai-ml/data-science" },
         { label: "AI Engineering", link: "/services/ai-ml/ai-engineering" },
@@ -64,7 +65,7 @@ export default function HeroSection() {
       title: "Operationalize Insights",
       link: "/services/operationalize-insights",
       bg: "bg-violet-50",
-      img: "https://images.unsplash.com/photo-1543007632-7bb2f3b6f8f4?auto=format&fit=crop&w=800&q=60",
+      img: "/assets/service-4.svg",
       items: [
         { label: "Experience Consulting", link: "/services/operationalize-insights/experience-consulting" },
         { label: "Application Engineering", link: "/services/operationalize-insights/application-engineering" },
@@ -191,7 +192,11 @@ export default function HeroSection() {
                             >
                               {/* Service image */}
                               <div className="h-20 md:h-24 lg:h-28 mb-6 rounded-xl overflow-hidden border border-slate-300">
-                                <img src={s.img} alt={`${s.title} image`} loading="lazy" className="w-full h-full object-cover pointer-events-none" />
+                                <div
+                                  aria-hidden="true"
+                                  className={`w-full h-full bg-center bg-no-repeat bg-contain ${s.bg}`}
+                                  style={{ backgroundImage: `url(${s.img})` }}
+                                />
                               </div>
 
                               <div className="group flex items-center gap-2 font-semibold mb-4 text-slate-900">
