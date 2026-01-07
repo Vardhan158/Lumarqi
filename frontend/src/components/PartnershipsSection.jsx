@@ -8,12 +8,12 @@ import databricks from "../assets/icn_home_databricks.webp";
 
 export default function PartnershipsSection() {
   return (
-    <section className="w-full bg-[#f6f4f2] py-32">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+    <section className="w-full bg-[#f6f4f2] py-24 md:py-32">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-        {/* ===== LEFT CONTENT ===== */}
+        {/* LEFT CONTENT */}
         <div className="max-w-lg">
-          <h2 className="text-3xl md:text-4xl font-medium leading-snug mb-14 text-black">
+          <h2 className="text-3xl md:text-4xl font-medium leading-snug mb-12 text-black">
             We’ve partnered with the best to bring you the latest
           </h2>
 
@@ -25,38 +25,38 @@ export default function PartnershipsSection() {
           </button>
         </div>
 
-        {/* ===== RIGHT LOGO CARD (BIG LIKE IMAGE) ===== */}
-        <div className="bg-white rounded-3xl px-16 py-20 min-h-[420px] flex items-center shadow-sm">
-          <div className="grid grid-cols-3 gap-x-16 gap-y-20 items-center justify-items-center w-full">
+        {/* RIGHT LOGO CARD */}
+        <div className="bg-white rounded-3xl px-8 sm:px-12 md:px-16 py-16 md:py-20 min-h-[360px] md:min-h-[420px] flex items-center shadow-sm">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-16 items-center justify-items-center w-full">
 
             <img
               src={microsoft}
               alt="Microsoft"
-              className="h-12 object-contain"
+              className="h-16 sm:h-20 md:h-16 lg:h-14 object-contain"
             />
 
             <img
               src={googleCloud}
               alt="Google Cloud"
-              className="h-12 object-contain"
+              className="h-16 sm:h-20 md:h-16 lg:h-14 object-contain"
             />
 
             <img
               src={aws}
               alt="AWS"
-              className="h-12 object-contain"
+              className="h-16 sm:h-20 md:h-16 lg:h-14 object-contain"
             />
 
             <img
               src={snowflake}
               alt="Snowflake"
-              className="h-12 object-contain col-span-2 justify-self-center"
+              className="h-16 sm:h-20 md:h-16 lg:h-14 object-contain sm:col-span-2 lg:col-span-2 justify-self-center"
             />
 
             <img
               src={databricks}
               alt="Databricks"
-              className="h-12 object-contain"
+              className="h-16 sm:h-20 md:h-16 lg:h-14 object-contain"
             />
 
           </div>
