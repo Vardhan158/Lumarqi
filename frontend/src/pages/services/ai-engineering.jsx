@@ -23,35 +23,18 @@ function HeroLottie() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-
     const animation = lottie.loadAnimation({
       container: containerRef.current,
       renderer: "svg",
       loop: true,
       autoplay: true,
-      path: "/lottie/engineer-your-data.json", // ✅ your animation
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid meet",
-        progressiveLoad: true,
-        hideOnTransparent: true,
-      },
+      path: "/lottie/ai-engineering.json", // 🔁 new animation
     });
 
-    return () => {
-      animation.destroy();
-    };
+    return () => animation.destroy();
   }, []);
 
-  // ✅ THIS WAS MISSING
-  return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div
-        ref={containerRef}
-        className="w-full h-full max-w-[520px]"
-      />
-    </div>
-  );
+  return <div ref={containerRef} className="w-full h-full" />;
 }
 
 const cardData = [

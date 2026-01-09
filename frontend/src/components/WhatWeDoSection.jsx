@@ -1,79 +1,27 @@
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import lottie from "lottie-web";
 
-/* ================= DNA DECORATION ================= */
+/* ================= LOTTIE BACKGROUND ================= */
 
 const DNADecoration = () => {
-  const numRungs = 12;
+  const lottieRef = useRef(null);
+
+  useEffect(() => {
+    const anim = lottie.loadAnimation({
+      container: lottieRef.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "/lottie/tiger-analytics-dna.json", // ✅ CORRECT
+    });
+
+    return () => anim.destroy();
+  }, []);
 
   return (
-    <div className="absolute bottom-[-60px] right-[-60px] w-[520px] h-[520px] opacity-30 pointer-events-none overflow-hidden rotate-[-15deg]">
-      <svg viewBox="0 0 400 400" className="w-full h-full">
-        {[...Array(numRungs)].map((_, i) => {
-          const baseX = 200;
-          const baseY = 40 + i * 26;
-          const delay = i * 0.18;
-
-          return (
-            <g key={i}>
-              {/* DNA RUNG */}
-              <motion.line
-                x1={baseX - 60}
-                x2={baseX + 60}
-                y1={baseY}
-                y2={baseY}
-                stroke="#E5E5E5"
-                strokeWidth="1"
-                initial={{ opacity: 0.15 }}
-                animate={{ opacity: [0.15, 0.5, 0.15] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay,
-                }}
-              />
-
-              {/* LEFT STRAND */}
-              <motion.circle
-                cx={baseX - 60}
-                cy={baseY}
-                r="4"
-                fill="#F59E0B"
-                animate={{
-                  cx: [baseX - 60, baseX + 60, baseX - 60],
-                  r: [4, 6, 4],
-                  opacity: [0.4, 1, 0.4],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay,
-                }}
-              />
-
-              {/* RIGHT STRAND */}
-              <motion.circle
-                cx={baseX + 60}
-                cy={baseY}
-                r="4"
-                fill="#E5E5E5"
-                animate={{
-                  cx: [baseX + 60, baseX - 60, baseX + 60],
-                  r: [4, 2, 4],
-                  opacity: [0.4, 0.2, 0.4],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay,
-                }}
-              />
-            </g>
-          );
-        })}
-      </svg>
+    <div className="absolute bottom-[-80px] right-[-80px] w-[520px] h-[520px] opacity-30 pointer-events-none rotate-[-15deg]">
+      <div ref={lottieRef} className="w-full h-full" />
     </div>
   );
 };
@@ -83,8 +31,8 @@ const DNADecoration = () => {
 export default function WhatWeDoSection() {
   return (
     <section className="relative bg-[#2F2F2D] text-white overflow-hidden min-h-screen flex items-center">
-      
-      {/* DNA BACKGROUND */}
+
+      {/* LOTTIE BACKGROUND */}
       <DNADecoration />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24 py-32">
@@ -175,6 +123,7 @@ export default function WhatWeDoSection() {
             </div>
           </motion.div>
         </div>
+
       </div>
     </section>
   );

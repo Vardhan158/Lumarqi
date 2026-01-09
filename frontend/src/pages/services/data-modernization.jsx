@@ -30,7 +30,7 @@ function HeroLottie() {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      path: "/lottie/engineer-your-data.json", // ✅ your animation
+      path: "/lottie/engineer-data-modernization.json", // ✅ your animation
       rendererSettings: {
         preserveAspectRatio: "xMidYMid meet",
         progressiveLoad: true,
