@@ -95,11 +95,18 @@ export default function Navbar () {
     ]},
   ];
 
+  // Close mobile menu on navigation
+  const handleMobileNav = () => {
+    setMenuOpen(false);
+    setMobileServiceOpen(false);
+    setMobileIndustryOpen(false);
+    setMobileCompanyOpen(false);
+  };
+
   return (
     <>
-      <nav className="fixed top-0 left-0 z-50 w-full backdrop-blur bg-white/70 border-b border-slate-200">
-        <div className="flex items-center justify-between py-5 px-6 md:px-16 lg:px-24 xl:px-32">
-          
+      <nav className="fixed top-0 left-0 z-50 w-full h-16 md:h-20 backdrop-blur bg-white/70 border-b border-slate-200">
+        <div className="flex items-center justify-between h-16 md:h-20 py-0 px-6 md:px-16 lg:px-24 xl:px-32">
           {/* LOGO */}
           <Link to="/" className="text-2xl font-bold text-slate-900">
             Lumar <span className="text-indigo-600">QI</span>
@@ -107,7 +114,6 @@ export default function Navbar () {
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-12">
-            
             {/* SERVICE DROPDOWN */}
             <div
               onMouseEnter={() => setServiceOpen(true)}
@@ -117,7 +123,6 @@ export default function Navbar () {
               <span className="text-lg font-semibold cursor-pointer hover:text-indigo-600 transition">
                 Service
               </span>
-
               <AnimatePresence>
                 {serviceOpen && (
                   <motion.div
@@ -137,7 +142,6 @@ export default function Navbar () {
                       ALL SERVICES
                       <span>↗</span>
                     </Link>
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                       {services.map((s) => (
                         <Link
@@ -149,13 +153,11 @@ export default function Navbar () {
                           <div className="w-full flex justify-center mb-6">
                             <img src={s.img} alt={s.title} className="w-28 h-28 object-contain" />
                           </div>
-
                           <div className="w-full">
                             <div className="font-semibold mb-4 text-slate-900 flex items-center gap-2">
                               {s.title}
                               <span className="text-orange-500">↗</span>
                             </div>
-
                             <ul className="space-y-2 text-sm text-slate-700">
                               {s.items.map((i) => (
                                 <li key={i.label}>
@@ -184,7 +186,6 @@ export default function Navbar () {
               <span className="text-lg font-semibold cursor-pointer hover:text-indigo-600 transition">
                 Industry
               </span>
-
               <AnimatePresence>
                 {industryOpen && (
                   <motion.div
@@ -204,28 +205,29 @@ export default function Navbar () {
                       ALL INDUSTRIES
                       <span>↗</span>
                     </Link>
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                       {industries.map((ind) => (
-                        <div key={ind.title} className="rounded-2xl overflow-hidden bg-white border border-slate-200 hover:shadow-lg transition flex flex-col h-full">
-                          <div className="w-full h-40 overflow-hidden">
-                            <img src={ind.img} alt={ind.title} className="w-full h-full object-cover" />
+                        <div key={ind.title} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-lg transition flex flex-col items-start text-left">
+                          <div className="w-full flex justify-center mb-6">
+                            <img src={ind.img} alt={ind.title} className="w-28 h-28 object-contain" />
                           </div>
-                          <div className="p-4 flex flex-col flex-1">
-                            <Link
-                              to={ind.link}
-                              onClick={() => setIndustryOpen(false)}
-                              className="font-semibold text-slate-900 flex items-center gap-2 mb-3 hover:text-indigo-600"
-                            >
-                              {ind.title}
-                              <span>↗</span>
-                            </Link>
-                            <ul className="space-y-2 text-sm text-slate-700 mt-auto">
+                          <div className="w-full">
+                            <div className="font-semibold mb-4 text-slate-900 flex items-center gap-2">
+                              <Link
+                                to={ind.link}
+                                onClick={() => setIndustryOpen(false)}
+                                className="hover:text-indigo-600 flex items-center gap-2"
+                              >
+                                {ind.title}
+                                <span className="text-orange-500">↗</span>
+                              </Link>
+                            </div>
+                            <ul className="space-y-2 text-sm text-slate-700">
                               {ind.items.map((it) => (
                                 <li key={it.label}>
                                   <Link to={it.link} onClick={() => setIndustryOpen(false)} className="hover:text-indigo-600 flex items-center gap-2">
                                     {it.label}
-                                    <span>↗</span>
+                                    <span className="text-orange-400">↗</span>
                                   </Link>
                                 </li>
                               ))}
@@ -248,7 +250,6 @@ export default function Navbar () {
               <span className="text-lg font-semibold cursor-pointer hover:text-indigo-600 transition">
                 Company
               </span>
-
               <AnimatePresence>
                 {companyOpen && (
                   <motion.div
@@ -268,7 +269,6 @@ export default function Navbar () {
                       COMPANY
                       <span>↗</span>
                     </Link>
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {company.map((sec) => (
                         <div key={sec.section} className="p-4 bg-white rounded-lg border border-slate-200">
@@ -302,10 +302,12 @@ export default function Navbar () {
             <button className="hidden md:block px-7 py-3 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition">
               Request demo
             </button>
-
             <button
-              className="md:hidden p-2 rounded-lg bg-white/50 border border-slate-200"
+              className="md:hidden p-2 rounded-lg bg-white/50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
             >
               {!menuOpen ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -328,29 +330,34 @@ export default function Navbar () {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-white z-40 mt-[70px] overflow-auto"
+            className="fixed inset-0 bg-white z-40 pt-16 md:pt-20 overflow-y-auto"
+            id="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            tabIndex={-1}
           >
             <div className="p-6 space-y-4">
-              
               {/* MOBILE SERVICE */}
               <button
                 onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
-                className="w-full text-left flex items-center justify-between py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold"
+                className="w-full text-left flex items-center justify-between py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                aria-expanded={mobileServiceOpen}
+                aria-controls="mobile-service-menu"
               >
                 Service
                 <span>{mobileServiceOpen ? "−" : "+"}</span>
               </button>
               {mobileServiceOpen && (
-                <div className="space-y-2 pl-4">
+                <div className="space-y-2 pl-4" id="mobile-service-menu">
                   {services.map((s) => (
                     <div key={s.title}>
-                      <Link to={s.link} onClick={() => setMenuOpen(false)} className="block py-2 text-indigo-600 font-medium">
+                      <Link to={s.link} onClick={handleMobileNav} className="block py-2 text-indigo-600 font-medium">
                         {s.title} ↗
                       </Link>
                       <ul className="space-y-1 text-sm pl-2">
                         {s.items.map((i) => (
                           <li key={i.label}>
-                            <Link to={i.link} onClick={() => setMenuOpen(false)} className="hover:text-indigo-600">
+                            <Link to={i.link} onClick={handleMobileNav} className="hover:text-indigo-600">
                               {i.label}
                             </Link>
                           </li>
@@ -364,18 +371,29 @@ export default function Navbar () {
               {/* MOBILE INDUSTRY */}
               <button
                 onClick={() => setMobileIndustryOpen(!mobileIndustryOpen)}
-                className="w-full text-left flex items-center justify-between py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold"
+                className="w-full text-left flex items-center justify-between py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                aria-expanded={mobileIndustryOpen}
+                aria-controls="mobile-industry-menu"
               >
                 Industry
                 <span>{mobileIndustryOpen ? "−" : "+"}</span>
               </button>
               {mobileIndustryOpen && (
-                <div className="space-y-2 pl-4">
+                <div className="space-y-2 pl-4" id="mobile-industry-menu">
                   {industries.map((ind) => (
                     <div key={ind.title}>
-                      <Link to={ind.link} onClick={() => setMenuOpen(false)} className="block py-2 text-indigo-600 font-medium">
+                      <Link to={ind.link} onClick={handleMobileNav} className="block py-2 text-indigo-600 font-medium">
                         {ind.title} ↗
                       </Link>
+                      <ul className="space-y-1 text-sm pl-2">
+                        {ind.items.map((it) => (
+                          <li key={it.label}>
+                            <Link to={it.link} onClick={handleMobileNav} className="hover:text-indigo-600">
+                              {it.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </div>
@@ -384,20 +402,22 @@ export default function Navbar () {
               {/* MOBILE COMPANY */}
               <button
                 onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
-                className="w-full text-left flex items-center justify-between py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold"
+                className="w-full text-left flex items-center justify-between py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                aria-expanded={mobileCompanyOpen}
+                aria-controls="mobile-company-menu"
               >
                 Company
                 <span>{mobileCompanyOpen ? "−" : "+"}</span>
               </button>
               {mobileCompanyOpen && (
-                <div className="space-y-2 pl-4">
+                <div className="space-y-2 pl-4" id="mobile-company-menu">
                   {company.map((sec) => (
                     <div key={sec.section}>
                       <div className="font-semibold text-slate-900 py-2">{sec.section}</div>
                       <ul className="space-y-1 text-sm pl-2">
                         {sec.items.map((it) => (
                           <li key={it.label}>
-                            <Link to={it.link} onClick={() => setMenuOpen(false)} className="hover:text-indigo-600">
+                            <Link to={it.link} onClick={handleMobileNav} className="hover:text-indigo-600">
                               {it.label}
                             </Link>
                           </li>
@@ -411,7 +431,7 @@ export default function Navbar () {
               {/* OTHER MOBILE LINKS */}
               <Link
                 to="/case-studies"
-                onClick={() => setMenuOpen(false)}
+                onClick={handleMobileNav}
                 className="block py-3 px-4 rounded-lg bg-slate-50 border border-slate-200 font-semibold"
               >
                 Case Studies
