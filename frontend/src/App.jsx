@@ -27,6 +27,15 @@ import MLOps from './pages/services/mlops'
 
 // Industry Pages
 import IndustryIndex from './pages/industry/index'
+import CPG from './pages/industry/cpg'
+import Retail from './pages/industry/retail'
+import BFS from './pages/industry/bfs'
+import Insurance from './pages/industry/insurance'
+import Manufacturing from './pages/industry/manufacturing'
+import Logistics from './pages/industry/logistics'
+import LifeSciences from './pages/industry/life-sciences'
+import Healthcare from './pages/industry/healthcare'
+import TechTelecomMedia from './pages/industry/technology-telecom-media'
 
 // Company Pages
 import CompanyIndex from './pages/company/index'
@@ -70,6 +79,15 @@ const App = () => {
 
         {/* Industries */}
         <Route path="/industry" element={<IndustryIndex />} />
+        <Route path="/industry/cpg" element={<CPG />} />
+        <Route path="/industry/cpg/retail" element={<Retail />} />
+        <Route path="/industry/bfs" element={<BFS />} />
+        <Route path="/industry/bfs/insurance" element={<Insurance />} />
+        <Route path="/industry/manufacturing" element={<Manufacturing />} />
+        <Route path="/industry/manufacturing/logistics" element={<Logistics />} />
+        <Route path="/industry/life-sciences" element={<LifeSciences />} />
+        <Route path="/industry/life-sciences/healthcare" element={<Healthcare />} />
+        <Route path="/industry/technology-telecom-media" element={<TechTelecomMedia />} />
 
         {/* Company */}
         <Route path="/company" element={<CompanyIndex />} />
