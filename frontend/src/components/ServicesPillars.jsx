@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
+import { Link } from "react-router-dom";
 
 /* ================= GENERIC LOTTIE ICON ================= */
 
@@ -48,9 +49,9 @@ export default function ServicesPillars() {
             <li>Platform Strategy</li>
           </ul>
 
-          <button className="mt-10 border-b border-black text-sm">
+          <Link to="/services/strategy-advisory"><button className="mt-10 border-b border-black text-sm">
             Know more ↗
-          </button>
+          </button></Link>
         </div>
 
         {/* TAB 2 — ENGINEER YOUR DATA */}
