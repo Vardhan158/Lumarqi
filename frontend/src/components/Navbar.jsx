@@ -15,7 +15,7 @@ import imgManufacturing from "../assets/Menu-navigation-Impact-3.webp";
 import imgLifeSciences from "../assets/Menu-navigation-Impact-4.webp";
 import imgTech from "../assets/Menu-navigation-Impact-5.webp";
 
-export default function Navbar () {
+export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [serviceOpen, setServiceOpen] = useState(false);
   const [industryOpen, setIndustryOpen] = useState(false);
@@ -31,9 +31,18 @@ export default function Navbar () {
       bg: "bg-indigo-50",
       img: imgStrategy,
       items: [
-        { label: "Analytics Roadmap", link: "/services/strategy-advisory/analytics-roadmap" },
-        { label: "Data Strategy", link: "/services/strategy-advisory/data-strategy" },
-        { label: "Platform Strategy", link: "/services/strategy-advisory/platform-strategy" },
+        {
+          label: "Analytics Roadmap",
+          link: "/services/strategy-advisory/analytics-roadmap",
+        },
+        {
+          label: "Data Strategy",
+          link: "/services/strategy-advisory/data-strategy",
+        },
+        {
+          label: "Platform Strategy",
+          link: "/services/strategy-advisory/platform-strategy",
+        },
       ],
     },
     {
@@ -42,9 +51,18 @@ export default function Navbar () {
       bg: "bg-teal-50",
       img: imgEngineer,
       items: [
-        { label: "Data Modernization", link: "/services/engineer-your-data/data-modernization" },
-        { label: "Data Foundation", link: "/services/engineer-your-data/data-foundation" },
-        { label: "Data Operations", link: "/services/engineer-your-data/data-operations" },
+        {
+          label: "Data Modernization",
+          link: "/services/engineer-your-data/data-modernization",
+        },
+        {
+          label: "Data Foundation",
+          link: "/services/engineer-your-data/data-foundation",
+        },
+        {
+          label: "Data Operations",
+          link: "/services/engineer-your-data/data-operations",
+        },
       ],
     },
     {
@@ -55,7 +73,10 @@ export default function Navbar () {
       items: [
         { label: "Data Science", link: "/services/ai-ml/data-science" },
         { label: "AI Engineering", link: "/services/ai-ml/ai-engineering" },
-        { label: "ML Products & Platforms", link: "/services/ai-ml/ml-products-platforms" },
+        {
+          label: "ML Products & Platforms",
+          link: "/services/ai-ml/ml-products-platforms",
+        },
       ],
     },
     {
@@ -64,35 +85,79 @@ export default function Navbar () {
       bg: "bg-violet-50",
       img: imgOperational,
       items: [
-        { label: "Experience Consulting", link: "/services/operationalize-insights/experience-consulting" },
-        { label: "Application Engineering", link: "/services/operationalize-insights/application-engineering" },
-        { label: "Business Intelligence", link: "/services/operationalize-insights/business-intelligence" },
+        {
+          label: "Experience Consulting",
+          link: "/services/operationalize-insights/experience-consulting",
+        },
+        {
+          label: "Application Engineering",
+          link: "/services/operationalize-insights/application-engineering",
+        },
+        {
+          label: "Business Intelligence",
+          link: "/services/operationalize-insights/business-intelligence",
+        },
         { label: "MLOps", link: "/services/operationalize-insights/mlops" },
       ],
     },
   ];
 
   const industries = [
-    { title: "CPG", link: "/industry/cpg", img: imgCPG, items: [{ label: "Retail", link: "/industry/cpg/retail" }] },
-    { title: "BFS", link: "/industry/bfs", img: imgBFS, items: [{ label: "Insurance", link: "/industry/bfs/insurance" }] },
-    { title: "Manufacturing", link: "/industry/manufacturing", img: imgManufacturing, items: [{ label: "Logistics", link: "/industry/manufacturing/logistics" }] },
-    { title: "Life Sciences", link: "/industry/life-sciences", img: imgLifeSciences, items: [{ label: "Healthcare", link: "/industry/life-sciences/healthcare" }] },
-    { title: "Technology, Telecom & Media", link: "/industry/technology-telecom-media", img: imgTech, items: [] },
+    {
+      title: "CPG",
+      link: "/industry/cpg",
+      img: imgCPG,
+      items: [{ label: "Retail", link: "/industry/cpg/retail" }],
+    },
+    {
+      title: "BFS",
+      link: "/industry/bfs",
+      img: imgBFS,
+      items: [{ label: "Insurance", link: "/industry/bfs/insurance" }],
+    },
+    {
+      title: "Manufacturing",
+      link: "/industry/manufacturing",
+      img: imgManufacturing,
+      items: [
+        { label: "Logistics", link: "/industry/manufacturing/logistics" },
+      ],
+    },
+    {
+      title: "Life Sciences",
+      link: "/industry/life-sciences",
+      img: imgLifeSciences,
+      items: [
+        { label: "Healthcare", link: "/industry/life-sciences/healthcare" },
+      ],
+    },
+    {
+      title: "Technology, Telecom & Media",
+      link: "/industry/technology-telecom-media",
+      img: imgTech,
+      items: [],
+    },
   ];
 
   const company = [
-    { section: "About Us", items: [
-      { label: "Mission & Values", link: "/company/mission-values" },
-      { label: "Investors", link: "/company/investors" },
-      { label: "People", link: "/company/people" },
-      { label: "Contact Us", link: "/company/contact" },
-      { label: "Careers", link: "/company/careers" },
-    ]},
-    { section: "Resources", items: [
-      { label: "News", link: "/company/news" },
-      { label: "Newsletters", link: "/company/newsletters" },
-      { label: "Webinars", link: "/company/webinars" },
-    ]},
+    {
+      section: "About Us",
+      items: [
+        { label: "Mission & Values", link: "/company/mission-values" },
+        { label: "Strategic Partner", link: "/company/StrategicPartners" },
+        { label: "Leadership", link: "/company/leadership" },
+        { label: "Contact Us", link: "/company/contact" },
+        { label: "Careers", link: "/company/careers" },
+      ],
+    },
+    {
+      section: "Resources",
+      items: [
+        { label: "News", link: "/company/news" },
+        { label: "Newsletters", link: "/company/newsletters" },
+        { label: "Webinars", link: "/company/webinars" },
+      ],
+    },
   ];
 
   // Close mobile menu on navigation
@@ -151,7 +216,11 @@ export default function Navbar () {
                           className={`p-6 rounded-2xl ${s.bg} border border-slate-200 hover:shadow-lg transition flex flex-col items-start text-left`}
                         >
                           <div className="w-full flex justify-center mb-6">
-                            <img src={s.img} alt={s.title} className="w-28 h-28 object-contain" />
+                            <img
+                              src={s.img}
+                              alt={s.title}
+                              className="w-28 h-28 object-contain"
+                            />
                           </div>
                           <div className="w-full">
                             <div className="font-semibold mb-4 text-slate-900 flex items-center gap-2">
@@ -161,7 +230,11 @@ export default function Navbar () {
                             <ul className="space-y-2 text-sm text-slate-700">
                               {s.items.map((i) => (
                                 <li key={i.label}>
-                                  <Link to={i.link} onClick={() => setServiceOpen(false)} className="hover:text-indigo-600 flex items-center gap-2">
+                                  <Link
+                                    to={i.link}
+                                    onClick={() => setServiceOpen(false)}
+                                    className="hover:text-indigo-600 flex items-center gap-2"
+                                  >
                                     {i.label}
                                     <span className="text-orange-400">↗</span>
                                   </Link>
@@ -207,27 +280,49 @@ export default function Navbar () {
                     </Link>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                       {industries.map((ind) => (
-                        <div key={ind.title} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-lg transition flex flex-col items-start text-left">
-                          <div className="w-full flex justify-center mb-6">
-                            <img src={ind.img} alt={ind.title} className="w-28 h-28 object-contain" />
+                        <div
+                          key={ind.title}
+                          className="group rounded-2xl bg-white border border-slate-200 overflow-hidden hover:shadow-lg transition flex flex-col"
+                        >
+                          {/* IMAGE (same structure as second image) */}
+                          <div className="relative aspect-[16/10] w-full bg-slate-100 overflow-hidden">
+                            <img
+                              src={ind.img}
+                              alt={ind.title}
+                              loading="lazy"
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
                           </div>
-                          <div className="w-full">
+
+                          {/* CONTENT */}
+                          <div className="p-6 flex flex-col flex-1 text-left">
+                            {/* TITLE */}
                             <div className="font-semibold mb-4 text-slate-900 flex items-center gap-2">
                               <Link
                                 to={ind.link}
                                 onClick={() => setIndustryOpen(false)}
-                                className="hover:text-indigo-600 flex items-center gap-2"
+                                className="flex items-center gap-2 hover:text-indigo-600 transition"
                               >
                                 {ind.title}
-                                <span className="text-orange-500">↗</span>
+                                <span className="text-orange-500 transition-transform duration-200 group-hover:-translate-y-1">
+                                  ↗
+                                </span>
                               </Link>
                             </div>
-                            <ul className="space-y-2 text-sm text-slate-700">
+
+                            {/* LINKS */}
+                            <ul className="space-y-3 text-sm text-slate-700">
                               {ind.items.map((it) => (
                                 <li key={it.label}>
-                                  <Link to={it.link} onClick={() => setIndustryOpen(false)} className="hover:text-indigo-600 flex items-center gap-2">
+                                  <Link
+                                    to={it.link}
+                                    onClick={() => setIndustryOpen(false)}
+                                    className="flex items-center gap-2 hover:text-indigo-600 transition"
+                                  >
                                     {it.label}
-                                    <span className="text-orange-400">↗</span>
+                                    <span className="text-orange-400 transition-transform duration-200 group-hover:-translate-y-1">
+                                      ↗
+                                    </span>
                                   </Link>
                                 </li>
                               ))}
@@ -271,12 +366,21 @@ export default function Navbar () {
                     </Link>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       {company.map((sec) => (
-                        <div key={sec.section} className="p-4 bg-white rounded-lg border border-slate-200">
-                          <div className="font-semibold text-slate-900 mb-3">{sec.section}</div>
+                        <div
+                          key={sec.section}
+                          className="p-4 bg-white rounded-lg border border-slate-200"
+                        >
+                          <div className="font-semibold text-slate-900 mb-3">
+                            {sec.section}
+                          </div>
                           <ul className="space-y-2 text-sm text-slate-700">
                             {sec.items.map((it) => (
                               <li key={it.label}>
-                                <Link to={it.link} onClick={() => setCompanyOpen(false)} className="hover:text-indigo-600 flex items-center gap-2">
+                                <Link
+                                  to={it.link}
+                                  onClick={() => setCompanyOpen(false)}
+                                  className="hover:text-indigo-600 flex items-center gap-2"
+                                >
                                   {it.label}
                                   <span>↗</span>
                                 </Link>
@@ -292,7 +396,10 @@ export default function Navbar () {
             </div>
 
             {/* OTHER LINKS */}
-            <Link to="/case-studies" className="text-lg font-semibold hover:text-indigo-600 transition">
+            <Link
+              to="/case-studies"
+              className="text-lg font-semibold hover:text-indigo-600 transition"
+            >
               Case Studies
             </Link>
           </div>
@@ -311,11 +418,21 @@ export default function Navbar () {
             >
               {!menuOpen ? (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 6H20M4 12H20M4 18H20" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+                  <path
+                    d="M4 6H20M4 12H20M4 18H20"
+                    stroke="#0f172a"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               ) : (
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M6 6L18 18M6 18L18 6" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+                  <path
+                    d="M6 6L18 18M6 18L18 6"
+                    stroke="#0f172a"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               )}
             </button>
@@ -351,13 +468,21 @@ export default function Navbar () {
                 <div className="space-y-2 pl-4" id="mobile-service-menu">
                   {services.map((s) => (
                     <div key={s.title}>
-                      <Link to={s.link} onClick={handleMobileNav} className="block py-2 text-indigo-600 font-medium">
+                      <Link
+                        to={s.link}
+                        onClick={handleMobileNav}
+                        className="block py-2 text-indigo-600 font-medium"
+                      >
                         {s.title} ↗
                       </Link>
                       <ul className="space-y-1 text-sm pl-2">
                         {s.items.map((i) => (
                           <li key={i.label}>
-                            <Link to={i.link} onClick={handleMobileNav} className="hover:text-indigo-600">
+                            <Link
+                              to={i.link}
+                              onClick={handleMobileNav}
+                              className="hover:text-indigo-600"
+                            >
                               {i.label}
                             </Link>
                           </li>
@@ -382,13 +507,21 @@ export default function Navbar () {
                 <div className="space-y-2 pl-4" id="mobile-industry-menu">
                   {industries.map((ind) => (
                     <div key={ind.title}>
-                      <Link to={ind.link} onClick={handleMobileNav} className="block py-2 text-indigo-600 font-medium">
+                      <Link
+                        to={ind.link}
+                        onClick={handleMobileNav}
+                        className="block py-2 text-indigo-600 font-medium"
+                      >
                         {ind.title} ↗
                       </Link>
                       <ul className="space-y-1 text-sm pl-2">
                         {ind.items.map((it) => (
                           <li key={it.label}>
-                            <Link to={it.link} onClick={handleMobileNav} className="hover:text-indigo-600">
+                            <Link
+                              to={it.link}
+                              onClick={handleMobileNav}
+                              className="hover:text-indigo-600"
+                            >
                               {it.label}
                             </Link>
                           </li>
@@ -413,11 +546,17 @@ export default function Navbar () {
                 <div className="space-y-2 pl-4" id="mobile-company-menu">
                   {company.map((sec) => (
                     <div key={sec.section}>
-                      <div className="font-semibold text-slate-900 py-2">{sec.section}</div>
+                      <div className="font-semibold text-slate-900 py-2">
+                        {sec.section}
+                      </div>
                       <ul className="space-y-1 text-sm pl-2">
                         {sec.items.map((it) => (
                           <li key={it.label}>
-                            <Link to={it.link} onClick={handleMobileNav} className="hover:text-indigo-600">
+                            <Link
+                              to={it.link}
+                              onClick={handleMobileNav}
+                              className="hover:text-indigo-600"
+                            >
                               {it.label}
                             </Link>
                           </li>

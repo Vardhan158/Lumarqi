@@ -113,8 +113,8 @@ export default function HeroSection() {
       title: "About Us",
       items: [
         { label: "Mission & Values", link: "/company/mission-values" },
-        { label: "Investors", link: "/company/investors" },
-        { label: "People", link: "/company/people" },
+        { label: "Strategic Partner", link: "/company/StrategicPartners" },
+        { label: "Leadership", link: "/company/leadership" },
         { label: "Contact Us", link: "/company/contact" },
         { label: "Careers", link: "/company/careers" },
       ],
