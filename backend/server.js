@@ -56,7 +56,7 @@ app.post('/api/request-demo', async (req, res) => {
     const html = `
       <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;font-family:Arial,sans-serif;background:#fff;">
         <div style="padding:32px 0 16px 0;text-align:center;">
-          <img src="${logoUrl}" alt="Lumar QI Logo" width="80" height="80" style="display:block;margin:auto;background:#fff;border-radius:12px;" />
+          <img src="${logoUrl}" alt="Lumar QI Logo" width="180" height="180" style="display:block;margin:auto;background:#fff;border-radius:16px;" />
         </div>
         <div style="${bannerStyle}">
           <strong>New Demo Request Received</strong>
