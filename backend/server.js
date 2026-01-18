@@ -1,8 +1,10 @@
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const Contact = require('./models/Contact');
+const Newsletter = require('./models/Newsletter');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +16,27 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
+
+
+// Newsletter subscription endpoint
+app.post('/api/newsletter', async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required.' });
+  }
+  try {
+    // Save email to DB, ignore duplicate
+    await Newsletter.updateOne(
+      { email },
+      { $setOnInsert: { email } },
+      { upsert: true }
+    );
+    return res.status(200).json({ message: 'Subscribed successfully.' });
+  } catch (err) {
+    console.error('Newsletter subscription error:', err);
+    return res.status(500).json({ error: 'Server error. Please try again later.' });
+  }
+});
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {

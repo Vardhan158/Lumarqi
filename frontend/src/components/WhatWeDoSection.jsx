@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, Link } from "react-router-dom";
 import lottie from "lottie-web";
 
 /* ================= LOTTIE BACKGROUND ================= */
@@ -29,6 +30,7 @@ const DNADecoration = () => {
 /* ================= MAIN SECTION ================= */
 
 export default function WhatWeDoSection() {
+  const navigate = useNavigate();
   return (
     <section className="relative bg-[#2F2F2D] text-white overflow-hidden min-h-screen flex items-center">
 
@@ -63,15 +65,15 @@ export default function WhatWeDoSection() {
               by bringing the best of AI and analytics together.
             </p>
 
-            <a
-              href="#"
+            <Link
+              to="/company/mission-values"
               className="inline-flex items-center gap-2 text-[#F59E0B] font-medium group hover:text-white transition-colors"
             >
               Read our commitment to you
               <span className="transform group-hover:translate-x-1 transition-transform">
                 ↗
               </span>
-            </a>
+            </Link>
           </motion.div>
 
           {/* RIGHT IMAGE */}
@@ -114,10 +116,16 @@ export default function WhatWeDoSection() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <button className="bg-white text-[#1F1F1F] px-8 py-4 font-bold hover:bg-[#F59E0B] hover:text-white transition-all transform hover:-translate-y-1 shadow-lg">
+              <button
+                className="bg-white text-[#1F1F1F] px-8 py-4 font-bold hover:bg-[#F59E0B] hover:text-white transition-all transform hover:-translate-y-1 shadow-lg"
+                onClick={() => navigate('/company/leadership')}
+              >
                 See how we work ↗
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 font-bold hover:bg-white hover:text-[#1F1F1F] transition-all transform hover:-translate-y-1 shadow-lg">
+              <button
+                className="border-2 border-white text-white px-8 py-4 font-bold hover:bg-white hover:text-[#1F1F1F] transition-all transform hover:-translate-y-1 shadow-lg"
+                onClick={() => navigate('/company/careers')}
+              >
                 Find a career with us ↗
               </button>
             </div>

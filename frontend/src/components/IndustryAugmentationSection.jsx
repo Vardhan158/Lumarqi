@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import industryImage from "../assets/home-page-industry-6th-fold-banner-.webp";
 
-export default function IndustryAugmentationSection() {
+function IndustryAugmentationSection() {
+  const navigate = useNavigate();
   return (
     <section className="relative w-full min-h-[85vh] overflow-hidden">
       {/* ===== BACKGROUND IMAGE ===== */}
@@ -27,7 +29,10 @@ export default function IndustryAugmentationSection() {
             fundamental grounds-up thinking is needed to solve these.
           </p>
 
-          <button className="group inline-flex items-center gap-3 border-b border-black pb-1 text-sm font-medium">
+          <button
+            className="group inline-flex items-center gap-3 border-b border-black pb-1 text-sm font-medium"
+            onClick={() => navigate('/industry')}
+          >
             Start building now
             <span className="text-orange-500 transition-transform group-hover:translate-x-1">
               ↗
@@ -38,3 +43,5 @@ export default function IndustryAugmentationSection() {
     </section>
   );
 }
+
+export default IndustryAugmentationSection;

@@ -1,4 +1,6 @@
+
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import lottie from "lottie-web";
 
@@ -11,10 +13,8 @@ import storyImg2 from "../../assets/analytics-roadmap-1-2.webp";
 import storyImg3 from "../../assets/data-strategy-1-2.webp";
 
 /* ================= HERO LOTTIE ================= */
-
 function HeroLottie() {
   const containerRef = useRef(null);
-
   useEffect(() => {
     const animation = lottie.loadAnimation({
       container: containerRef.current,
@@ -23,14 +23,16 @@ function HeroLottie() {
       autoplay: true,
       path: "/lottie/strategy-advisory.json",
     });
-
     return () => animation.destroy();
   }, []);
-
   return <div ref={containerRef} className="w-full h-full" />;
 }
 
 export default function StrategyAdvisory() {
+  const navigate = useNavigate();
+  // Navigation handlers for child components
+  const handleOfferings = () => navigate('/services/strategy-advisory/offerings');
+  const handleCaseStudies = () => navigate('/case-studies');
   return (
     <div className="bg-white overflow-hidden">
 
@@ -53,7 +55,10 @@ export default function StrategyAdvisory() {
               Accelerate your AI-driven transformation across the business value chain
             </p>
 
-            <button className="mt-10 bg-[#4f46e5] text-white px-8 py-4 rounded-full font-medium">
+            <button
+              className="mt-10 bg-[#4f46e5] text-white px-8 py-4 rounded-full font-medium"
+              onClick={() => navigate('/contact')}
+            >
               Request a consultation
             </button>
           </div>
@@ -98,18 +103,21 @@ export default function StrategyAdvisory() {
             image={analyticsImg}
             title="Analytics Roadmap"
             description="Drive AI and analytics adoption across critical business areas with our personalized roadmaps, accelerating your journey towards informed decision-making and digital transformation."
+            onOfferingsClick={handleOfferings}
           />
 
           <OfferingCard
             image={dataStrategyImg}
             title="Data Strategy"
             description="Implement the right data strategy tailored to your business objectives with optimized data management, quality, and governance practices."
+            onOfferingsClick={handleOfferings}
           />
 
           <OfferingCard
             image={platformStrategyImg}
             title="Platform Strategy"
             description="Leverage your data’s full potential to enhance operational efficiency by defining the right technology infrastructure and platforms."
+            onOfferingsClick={handleOfferings}
           />
         </div>
       </section>
@@ -143,18 +151,21 @@ export default function StrategyAdvisory() {
             image={storyImg1}
             title="ML platform powers data accessibility for private equity firm"
             description="Tiger Analytics built a Machine Learning (ML) platform to act as a centralized gateway for internal users, portfolio companies, and partners."
+            onReadClick={handleCaseStudies}
           />
 
           <CustomerStory
             image={storyImg2}
             title="Next-gen RGM boosts promotion ROI for confectionery manufacturer"
             description="Tiger Analytics established a feasible model that improved product promotion recommendations at the customer level."
+            onReadClick={handleCaseStudies}
           />
 
           <CustomerStory
             image={storyImg3}
             title="Redesigned Clickstream platform boosts grocery retailer’s margin by $17 million"
             description="Tiger Analytics established a future-ready Clickstream platform and a best-fit operating model."
+            onReadClick={handleCaseStudies}
           />
         </div>
       </section>
@@ -162,12 +173,16 @@ export default function StrategyAdvisory() {
       {/* ================= FINAL CTA ================= */}
       <section className="px-6 md:px-16 lg:px-24 xl:px-32 pb-40">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="bg-[#f6f6f6] rounded-3xl p-16">
+          <div
+            className="bg-[#f6f6f6] rounded-3xl p-16 cursor-pointer hover:shadow-lg transition"
+            onClick={() => navigate('/contact')}
+          >
             <h3 className="text-[36px] font-semibold leading-tight">
               Design data strategies that drive business excellence
             </h3>
-
-            <span className="mt-8 inline-flex items-center gap-2 border-b border-black text-sm">
+            <span
+              className="mt-8 inline-flex items-center gap-2 border-b border-black text-sm"
+            >
               Let’s connect ↗
             </span>
           </div>
@@ -189,7 +204,7 @@ export default function StrategyAdvisory() {
 
 /* ================= OFFERING CARD ================= */
 
-function OfferingCard({ image, title, description }) {
+function OfferingCard({ image, title, description, onOfferingsClick }) {
   return (
     <div className="bg-[#fff2cf] rounded-2xl p-10 flex flex-col items-center text-center h-full">
       <img src={image} alt={title} className="w-full max-w-[260px] mb-10 object-contain" />
@@ -197,7 +212,10 @@ function OfferingCard({ image, title, description }) {
       <p className="mt-4 text-sm text-[#333] leading-relaxed max-w-sm">
         {description}
       </p>
-      <span className="mt-auto pt-10 border-b border-black text-sm flex items-center gap-2">
+      <span
+        className="mt-auto pt-10 border-b border-black text-sm flex items-center gap-2 cursor-pointer"
+        onClick={onOfferingsClick}
+      >
         Here’s what we offer ↗
       </span>
     </div>
@@ -206,14 +224,17 @@ function OfferingCard({ image, title, description }) {
 
 /* ================= CUSTOMER STORY CARD ================= */
 
-function CustomerStory({ image, title, description }) {
+function CustomerStory({ image, title, description, onReadClick }) {
   return (
     <div className="border rounded-2xl overflow-hidden bg-white flex flex-col h-full">
       <img src={image} alt={title} className="h-52 w-full object-cover" />
       <div className="p-8 flex flex-col flex-1">
         <h4 className="font-medium mb-4">{title}</h4>
         <p className="text-sm text-gray-600">{description}</p>
-        <span className="mt-auto inline-flex items-center gap-2 text-sm border-b border-black w-fit">
+        <span
+          className="mt-auto inline-flex items-center gap-2 text-sm border-b border-black w-fit cursor-pointer"
+          onClick={onReadClick}
+        >
           Read ↗
         </span>
       </div>

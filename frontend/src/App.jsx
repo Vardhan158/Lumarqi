@@ -49,6 +49,10 @@ import News from "./pages/company/news";
 import Newsletters from "./pages/company/newsletters";
 import Webinars from "./pages/company/webinars";
 
+/* Case Studies */
+import CaseStudyAI from "./pages/case-studies/CaseStudyAI";
+import CaseStudyDetail from "./pages/case-studies/CaseStudyDetail";
+
 const App = () => {
   const [loading, setLoading] = useState(true);
 
@@ -69,6 +73,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/ai-agents" element={<CaseStudyAI />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
 
             {/* Services */}
             <Route path="/services" element={<StrategyAdvisory />} />

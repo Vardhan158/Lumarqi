@@ -68,9 +68,11 @@ export default function ServicesPillars() {
             <li>Data Operations</li>
           </ul>
 
-          <button className="mt-10 border-b border-black text-sm">
-            Know more ↗
-          </button>
+          <Link to="/services/engineer-your-data">
+            <button className="mt-10 border-b border-black text-sm">
+              Know more ↗
+            </button>
+          </Link>
         </div>
 
         {/* TAB 3 — DIFFERENTIATE WITH AI / ML */}
@@ -87,9 +89,11 @@ export default function ServicesPillars() {
             <li>ML Products & Platforms</li>
           </ul>
 
-          <button className="mt-10 border-b border-black text-sm">
-            Know more ↗
-          </button>
+          <Link to="/services/ai-ml">
+            <button className="mt-10 border-b border-black text-sm">
+              Know more ↗
+            </button>
+          </Link>
         </div>
 
         {/* TAB 4 — OPERATIONALIZE INSIGHTS */}
@@ -107,9 +111,11 @@ export default function ServicesPillars() {
             <li>ML Ops</li>
           </ul>
 
-          <button className="mt-10 border-b border-black text-sm">
-            Know more ↗
-          </button>
+          <Link to="/services/operationalize-insights">
+            <button className="mt-10 border-b border-black text-sm">
+              Know more ↗
+            </button>
+          </Link>
         </div>
 
       </div>

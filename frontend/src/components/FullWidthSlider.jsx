@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const NAVBAR_HEIGHT = 72;
 
@@ -11,6 +12,7 @@ const slides = [
     description:
       "Build future-ready data and AI strategies that drive measurable business outcomes.",
     cta: "Explore Services",
+    to: "/services"
   },
   {
     image:
@@ -19,6 +21,7 @@ const slides = [
     description:
       "Operationalize AI at scale with governance, trust, and performance built-in.",
     cta: "Learn More",
+    to: "/company/mission-values"
   },
   {
     image:
@@ -27,6 +30,7 @@ const slides = [
     description:
       "Design scalable, cloud-native platforms for speed, insight, and growth.",
     cta: "View Case Studies",
+    to: "/case-studies"
   },
 ];
 
@@ -59,6 +63,7 @@ const itemVariants = {
 export default function FullWidthSlider() {
   const [index, setIndex] = useState(0);
   const total = slides.length;
+  const navigate = useNavigate();
 
   const next = () => setIndex((i) => (i + 1) % total);
   const prev = () => setIndex((i) => (i - 1 + total) % total);
@@ -68,6 +73,11 @@ export default function FullWidthSlider() {
     const interval = setInterval(next, 6500);
     return () => clearInterval(interval);
   }, []);
+
+  const handleCtaClick = () => {
+    const to = slides[index].to;
+    if (to) navigate(to);
+  };
 
   return (
     <section
@@ -123,7 +133,10 @@ export default function FullWidthSlider() {
                       </motion.p>
 
                       <motion.div variants={itemVariants}>
-                        <button className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition">
+                        <button
+                          className="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition"
+                          onClick={handleCtaClick}
+                        >
                           {slide.cta}
                         </button>
                       </motion.div>

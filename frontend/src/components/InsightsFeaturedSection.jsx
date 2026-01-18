@@ -1,4 +1,5 @@
-import React from "react";
+
+import { useNavigate } from "react-router-dom";
 
 import img1 from "../assets/detectingbias.webp";
 import img2 from "../assets/beyond_traditional_analytics.webp";
@@ -69,6 +70,7 @@ const insights = [
 ];
 
 export default function InsightsListSection() {
+  const navigate = useNavigate();
   return (
     <section className="w-full bg-white py-32">
       <div className="max-w-[1440px] mx-auto px-6 md:px-16 lg:px-24 space-y-16">
@@ -101,7 +103,10 @@ export default function InsightsListSection() {
                 {item.description}
               </p>
 
-              <button className="group inline-flex items-center gap-3 border-b border-white pb-1 text-sm font-medium">
+              <button
+                className="group inline-flex items-center gap-3 border-b border-white pb-1 text-sm font-medium"
+                onClick={() => navigate(`/insights/${index}`)}
+              >
                 Read More
                 <span className="text-orange-500 transition-transform group-hover:translate-x-1">
                   ↗

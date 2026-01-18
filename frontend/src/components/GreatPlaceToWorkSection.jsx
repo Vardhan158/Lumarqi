@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
@@ -33,10 +34,22 @@ const slides = [
 
 export default function GreatPlaceToWorkSlider() {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   const next = () => setIndex((i) => (i + 1) % slides.length);
-  const prev = () =>
-    setIndex((i) => (i - 1 + slides.length) % slides.length);
+  const prev = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
+
+  // Navigation targets for each slide
+  const slideLinks = [
+    "/company/news",
+    "/company/news",
+    "/company/careers"
+  ];
+
+  const handleCtaClick = () => {
+    const to = slideLinks[index];
+    if (to) navigate(to);
+  };
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
@@ -89,7 +102,10 @@ export default function GreatPlaceToWorkSlider() {
                 {slides[index].meta}
               </p>
 
-              <button className="inline-flex items-center gap-3 bg-[#2C2C2C] text-white px-8 py-4 text-base font-medium hover:bg-black transition">
+              <button
+                className="inline-flex items-center gap-3 bg-[#2C2C2C] text-white px-8 py-4 text-base font-medium hover:bg-black transition"
+                onClick={handleCtaClick}
+              >
                 {slides[index].cta}
                 <span className="text-[#F97316]">↗</span>
               </button>

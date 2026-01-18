@@ -1,5 +1,5 @@
-import React from "react";
 
+import { useNavigate } from "react-router-dom";
 import microsoft from "../assets/icn_home_microsoft.webp";
 import googleCloud from "../assets/icn_home_google-cloud.webp";
 import aws from "../assets/icn_home_aws.webp";
@@ -7,6 +7,7 @@ import snowflake from "../assets/icn_home_snowflake.webp";
 import databricks from "../assets/icn_home_databricks.webp";
 
 export default function PartnershipsSection() {
+  const navigate = useNavigate();
   return (
     <section className="w-full bg-[#f6f4f2] py-24 md:py-32">
       <div className="max-w-[1440px] mx-auto px-6 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -17,7 +18,10 @@ export default function PartnershipsSection() {
             We’ve partnered with the best to bring you the latest
           </h2>
 
-          <button className="group inline-flex items-center gap-3 border-b border-black pb-1 text-sm font-medium">
+          <button
+            className="group inline-flex items-center gap-3 border-b border-black pb-1 text-sm font-medium"
+            onClick={() => navigate('/partnerships')}
+          >
             Read about our partnerships
             <span className="text-orange-500 transition-transform group-hover:translate-x-1">
               ↗

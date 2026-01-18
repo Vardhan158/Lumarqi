@@ -1,7 +1,9 @@
 import React from "react";
-import careersImage from "../assets/why-join-us-CTA-1.webp"; // your uploaded image
+import { useNavigate } from "react-router-dom";
+import careersImage from "../assets/why-join-us-CTA-1.webp";
 
 export default function CareersCTASection() {
+  const navigate = useNavigate();
   return (
     <section className="w-full bg-white py-32">
       <div className="max-w-[1600px] mx-auto px-6 md:px-16 lg:px-24">
@@ -18,7 +20,10 @@ export default function CareersCTASection() {
               Discover a meaningful career path in a collaborative environment.
             </p>
 
-            <button className="group inline-flex items-center gap-3 border-b border-black pb-1 text-sm font-medium">
+            <button
+              className="group inline-flex items-center gap-3 border-b border-black pb-1 text-sm font-medium"
+              onClick={() => navigate('/company/careers')}
+            >
               Apply now
               <span className="text-orange-500 transition-transform group-hover:translate-x-1">
                 ↗

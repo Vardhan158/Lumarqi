@@ -113,43 +113,34 @@ export default function MissionValues() {
       <Navbar />
 
       {/* ================= HERO ================= */}
-      <section className="relative h-screen">
+      <section className="relative min-h-[60vh] h-[60vh] sm:h-[70vh] md:h-screen flex items-center">
         <img
           src={heroImage}
           alt="Mission and Values"
           className="absolute inset-0 h-full w-full object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/25" />
-
-        <div className="relative z-10 flex h-full items-center px-6 md:px-16 lg:px-24 xl:px-32">
-          <div className="max-w-4xl">
-            <h1 className="text-white text-4xl md:text-6xl font-light">
+        <div className="relative z-10 flex h-full items-center px-4 sm:px-6 md:px-16 lg:px-24 xl:px-32 w-full">
+          <div className="max-w-4xl w-full">
+            <h1 className="text-white text-3xl sm:text-4xl md:text-6xl font-light">
               Mission & values
             </h1>
-            <p className="mt-6 text-white/80 max-w-xl">
-              Transforming uncertainty into opportunity for the world’s most
-              successful organisations.
+            <p className="mt-6 text-white/80 max-w-xl text-base sm:text-lg">
+              Transforming uncertainty into opportunity for the world’s most successful organisations.
             </p>
-            <div className="mt-10 h-[1px] w-48 bg-white/40" />
+            <div className="mt-10 h-[1px] w-32 sm:w-48 bg-white/40" />
           </div>
         </div>
       </section>
 
       {/* ================= IMPACT ================= */}
-      <section className="bg-white px-6 md:px-16 lg:px-24 xl:px-32 py-24">
-        <div className="max-w-5xl">
-          <p className="text-xs tracking-[0.25em] text-slate-500 uppercase mb-6">
-            Our impact in numbers
-          </p>
-
-          <h2 className="text-3xl md:text-5xl font-light">
-            In a world drowning in data, we deliver clarity
-          </h2>
-
-          <div className="mt-6 h-[2px] w-28 bg-blue-600" />
+      <section className="bg-white px-4 sm:px-6 md:px-16 lg:px-24 xl:px-32 py-14 sm:py-24">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs tracking-[0.25em] text-slate-500 uppercase mb-6">Our impact in numbers</p>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-light">In a world drowning in data, we deliver clarity</h2>
+          <div className="mt-6 h-[2px] w-20 sm:w-28 bg-blue-600" />
         </div>
-
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16">
+        <div className="mt-12 sm:mt-20 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto">
           <Metric value={4900} suffix="+" label="Clients worldwide" />
           <Metric value={3700} suffix="+" label="Employees worldwide" />
           <Metric value={285.5} prefix="£" suffix="m" decimals={1} label="Revenue" />
@@ -162,13 +153,13 @@ export default function MissionValues() {
         <img
           src="https://www.globaldata.com/wp-content/uploads/2024/09/Frame-8.png"
           alt=""
-          className="w-full h-auto"
+          className="w-full h-auto max-h-[320px] sm:max-h-[420px] md:max-h-[520px] object-cover"
         />
       </section>
 
       {/* ================= MISSION / VISION ================= */}
-      <section className="bg-white px-6 md:px-16 lg:px-24 xl:px-32 py-24">
-        <div className="grid md:grid-cols-2 gap-16">
+      <section className="bg-white px-4 sm:px-6 md:px-16 lg:px-24 xl:px-32 py-14 sm:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {[
             ["Our mission", "To turn data into foresight, questions into answers, and decisions into results."],
             ["Our vision", "To provide the intelligence that transforms uncertainty into opportunity."]
@@ -185,11 +176,10 @@ export default function MissionValues() {
       </section>
 
       {/* ================= HERITAGE (PARALLAX) ================= */}
-      <section className="bg-white px-6 md:px-16 lg:px-24 xl:px-32 py-32">
-        {/* Section height controls pin + scroll */}
-        <div className="grid lg:grid-cols-2 gap-20 h-screen">
+      <section className="bg-white px-4 sm:px-6 md:px-16 lg:px-24 xl:px-32 py-14 sm:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 min-h-[60vh] lg:min-h-[80vh]">
           {/* ================= LEFT (PINNED) ================= */}
-          <div className="lg:sticky lg:top-32 self-start max-w-xl h-fit">
+          <div className="lg:sticky lg:top-32 self-start max-w-xl h-fit mb-10 lg:mb-0">
             <p className="text-xs tracking-[0.25em] text-slate-500 uppercase mb-6">
               Our heritage
             </p>
@@ -205,24 +195,19 @@ export default function MissionValues() {
             </p>
           </div>
           {/* ================= RIGHT (SCROLLABLE) ================= */}
-          <div className="h-full overflow-y-auto pr-4 space-y-10">
+          <div className="h-72 sm:h-96 md:h-[420px] lg:h-full overflow-y-auto pr-0 sm:pr-4 space-y-6 sm:space-y-10">
             {Array.from({ length: 28 }).map((_, index) => (
               <div
                 key={index}
-                className="border border-slate-200 bg-white p-6"
+                className="border border-slate-200 bg-white p-4 sm:p-6"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-semibold text-slate-500 uppercase">
-                    Brand
-                  </span>
-                  <h3 className="text-xl font-medium text-slate-900">
-                    Company {index + 1}
-                  </h3>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mb-4">
+                  <span className="text-xs font-semibold text-slate-500 uppercase">Brand</span>
+                  <h3 className="text-lg sm:text-xl font-medium text-slate-900">Company {index + 1}</h3>
                 </div>
                 <div className="h-[1px] w-full bg-slate-200 mb-4" />
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Acquired 2025. Strategic intelligence platform delivering
-                  cross-industry insights and decision-grade intelligence.
+                  Acquired 2025. Strategic intelligence platform delivering cross-industry insights and decision-grade intelligence.
                 </p>
               </div>
             ))}
@@ -231,21 +216,15 @@ export default function MissionValues() {
       </section>
 
       <section className="w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] min-h-screen">
+        <div className="flex flex-col lg:grid lg:grid-cols-[45%_55%] min-h-[60vh] lg:min-h-screen">
           {/* ================= LEFT PANEL ================= */}
-          <div className="bg-[#0b1a24] px-10 md:px-16 py-24 flex flex-col justify-center">
-            <p className="text-xs tracking-[0.35em] text-white/60 uppercase mb-6">
-              Our values
-            </p>
-            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-light leading-tight max-w-xl">
-              Our values shape how we work with you and each other
-            </h2>
-            <p className="mt-6 text-white/70 max-w-md">
-              They shape our culture and help us make a real impact.
-            </p>
-            <ul className="mt-12 space-y-4 text-white">
+          <div className="bg-[#0b1a24] px-6 sm:px-10 md:px-16 py-14 sm:py-24 flex flex-col justify-center">
+            <p className="text-xs tracking-[0.35em] text-white/60 uppercase mb-6">Our values</p>
+            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight max-w-xl">Our values shape how we work with you and each other</h2>
+            <p className="mt-6 text-white/70 max-w-md">They shape our culture and help us make a real impact.</p>
+            <ul className="mt-10 sm:mt-12 space-y-3 sm:space-y-4 text-white">
               {["Courage", "Curiosity", "Collaboration"].map((item) => (
-                <li key={item} className="flex items-center gap-3">
+                <li key={item} className="flex items-center gap-2 sm:gap-3">
                   <span className="text-green-400 text-lg">✓</span>
                   <span className="text-base">{item}</span>
                 </li>
@@ -253,17 +232,17 @@ export default function MissionValues() {
             </ul>
           </div>
           {/* ================= RIGHT PANEL ================= */}
-          <div className="bg-[#f7f1e6] flex">
+          <div className="bg-[#f7f1e6] flex flex-col sm:flex-row">
             {/* IMAGE */}
-            <div className="w-[52%] relative">
+            <div className="w-full sm:w-[52%] relative min-h-[180px] sm:min-h-0 h-40 sm:h-auto">
               <img
                 src={valuesImage}
                 alt="Corporate building"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover rounded-none"
               />
             </div>
             {/* CARDS */}
-            <div className="w-[48%] px-8 py-16 space-y-6 overflow-y-auto">
+            <div className="w-full sm:w-[48%] px-4 sm:px-8 py-8 sm:py-16 space-y-4 sm:space-y-6 overflow-y-auto">
               <ValueCard
                 icon={<CourageIcon />}
                 title="Courage"
@@ -285,98 +264,62 @@ export default function MissionValues() {
       </section>
 
       <footer className="bg-gradient-to-r from-[#0b1a24] to-[#0e2233] text-white">
-      
-      {/* ================= TOP ================= */}
-      <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 relative">
-
-          {/* Divider */}
-          <div className="hidden lg:block absolute left-1/2 top-0 h-full w-px bg-white/10" />
-
-          {/* LEFT */}
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-2xl font-semibold">GlobalData</span>
+        {/* ================= TOP ================= */}
+        <div className="px-4 sm:px-6 md:px-16 lg:px-24 xl:px-32 py-14 sm:py-20">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 relative">
+            {/* Divider */}
+            <div className="hidden lg:block absolute left-1/2 top-0 h-full w-px bg-white/10" />
+            {/* LEFT */}
+            <div className="mb-10 lg:mb-0">
+              <div className="flex items-center gap-3 mb-8">
+                <span className="text-2xl font-semibold">GlobalData</span>
+              </div>
+              <h4 className="text-lg font-medium mb-2">Company information</h4>
+              <p className="text-white/70 text-sm leading-relaxed max-w-lg">
+                Registered Office: John Carpenter House, John Carpenter Street,<br />
+                London, EC4Y 0AN, UK<br />
+                Registered in England No. 03925319
+              </p>
+              <button className="mt-8 w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-3 rounded-full font-medium hover:gap-4 transition-all">
+                Contact us
+                <span>→</span>
+              </button>
             </div>
-
-            <h4 className="text-lg font-medium mb-2">
-              Company information
-            </h4>
-
-            <p className="text-white/70 text-sm leading-relaxed max-w-lg">
-              Registered Office: John Carpenter House, John Carpenter Street,
-              London, EC4Y 0AN, UK
-              <br />
-              Registered in England No. 03925319
-            </p>
-
-            <button className="mt-8 inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-3 rounded-full font-medium hover:gap-4 transition-all">
-              Contact us
-              <span>→</span>
-            </button>
-          </div>
-
-          {/* RIGHT */}
-          <div className="flex flex-col justify-center">
-            <h3 className="text-2xl md:text-3xl font-light mb-8 max-w-md">
-              DECODED, your curated industry newsletter.
-            </h3>
-
-            <button className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-3 rounded-full font-medium w-fit hover:gap-4 transition-all">
-              Subscribe
-              <span>→</span>
-            </button>
-
-            <div className="mt-10 flex gap-6 text-white/60 text-sm">
-              <a href="#" className="hover:text-white transition">
-                LinkedIn
-              </a>
-              <a href="#" className="hover:text-white transition">
-                Instagram
-              </a>
+            {/* RIGHT */}
+            <div className="flex flex-col justify-center items-start lg:items-center">
+              <h3 className="text-2xl md:text-3xl font-light mb-8 max-w-md">DECODED, your curated industry newsletter.</h3>
+              <button className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-3 rounded-full font-medium w-full sm:w-fit hover:gap-4 transition-all mb-4">
+                Subscribe
+                <span>→</span>
+              </button>
+              <div className="mt-6 flex gap-6 text-white/60 text-sm flex-wrap">
+                <a href="#" className="hover:text-white transition">LinkedIn</a>
+                <a href="#" className="hover:text-white transition">Instagram</a>
+              </div>
             </div>
           </div>
-
         </div>
-      </div>
-
-      {/* ================= BOTTOM ================= */}
-      <div className="border-t border-white/10 px-6 md:px-16 lg:px-24 xl:px-32 py-6 relative">
-
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
-
-          <div className="flex flex-wrap gap-4">
-            <a href="#" className="hover:text-white transition">
-              Modern Slavery Statement
-            </a>
-            <a href="#" className="hover:text-white transition">
-              UK Gender Pay Gap report
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Terms & Conditions
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Privacy Policy
-            </a>
+        {/* ================= BOTTOM ================= */}
+        <div className="border-t border-white/10 px-4 sm:px-6 md:px-16 lg:px-24 xl:px-32 py-6 relative">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start w-full md:w-auto">
+              <a href="#" className="hover:text-white transition">Modern Slavery Statement</a>
+              <a href="#" className="hover:text-white transition">UK Gender Pay Gap report</a>
+              <a href="#" className="hover:text-white transition">Terms & Conditions</a>
+              <a href="#" className="hover:text-white transition">Privacy Policy</a>
+            </div>
+            <div className="text-center md:text-left w-full md:w-auto">Copyright © GlobalData Plc 2025. All Rights Reserved.</div>
           </div>
-
-          <div>
-            Copyright © GlobalData Plc 2025. All Rights Reserved.
-          </div>
+          {/* Back to top */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 md:right-16 bg-white/10 border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+            aria-label="Back to top"
+          >
+            ↑
+          </button>
         </div>
-
-        {/* Back to top */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="absolute right-6 top-1/2 -translate-y-1/2 md:right-16 bg-white/10 border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition"
-          aria-label="Back to top"
-        >
-          ↑
-        </button>
-
-      </div>
-
-    </footer>
+      </footer>
     </main>
   );
 }

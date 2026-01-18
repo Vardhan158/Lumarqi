@@ -1,7 +1,8 @@
-import React from "react";
-import openIPImage from "../assets/tiger-stack.webp"; // replace with your actual image
+
+import { useNavigate } from "react-router-dom";
 
 export default function OpenIPSection() {
+  const navigate = useNavigate();
   return (
     <section className="w-full bg-[#2f2f2f]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-16 px-6 md:px-16 lg:px-24 py-24">
@@ -21,7 +22,10 @@ export default function OpenIPSection() {
             quality.
           </p>
 
-          <button className="inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-md text-sm font-medium hover:bg-gray-100 transition">
+          <button
+            className="inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-md text-sm font-medium hover:bg-gray-100 transition"
+            onClick={() => navigate('/open-ip')}
+          >
             Start now
             <span className="text-orange-500">↗</span>
           </button>
@@ -40,3 +44,4 @@ export default function OpenIPSection() {
     </section>
   );
 }
+import openIPImage from "../assets/tiger-stack.webp";
