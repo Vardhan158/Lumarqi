@@ -51,7 +51,7 @@ app.post('/api/request-demo', async (req, res) => {
     await DemoRequest.create({ name, email, message });
 
     // Email HTML with logo and banner
-    const logoUrl = 'https://lumarqi.onrender.com/LUMAR%20QI.png'; // Update to your actual deployed domain
+    const logoUrl = 'https://lumarqi.onrender.com/lumarqi.png'; // Uses your deployed public image
     const bannerStyle = 'background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%); color: #fff; padding: 24px 0; text-align: center; font-size: 1.5rem; font-family: Arial, sans-serif;';
     const html = `
       <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;font-family:Arial,sans-serif;background:#fff;">
