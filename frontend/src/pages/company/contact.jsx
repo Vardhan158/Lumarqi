@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
+import { motion } from 'framer-motion';
+import lottie from 'lottie-web';
 
 const initialState = {
   firstName: '',
@@ -23,6 +25,18 @@ const industries = ["Retail", "Insurance", "Banking & Financial Services", "Manu
 export default function Contact() {
   const [form, setForm] = useState(initialState);
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const lottieRef = React.useRef(null);
+
+  React.useEffect(() => {
+    lottie.loadAnimation({
+      container: lottieRef.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: '/lottie/strategy-advisory.json', // Use your preferred animation
+    });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,116 +68,132 @@ export default function Contact() {
     if (Object.keys(validationErrors).length > 0) return;
 
     try {
-      const res = await fetch('https://lumarqi-backend.onrender.com/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       });
-      const data = await res.json();
       if (res.ok) {
-        alert('Enquiry submitted successfully!');
+        setSubmitted(true);
         setForm(initialState);
-        setErrors({});
-      } else {
-        alert(data.error || 'Submission failed.');
       }
-    } catch (err) {
-      alert('Server error. Please try again later.');
+    } catch {
+      // handle error
     }
   };
 
   return (
-    <main className="pt-28 md:pt-40 px-6 md:px-16 lg:px-24 xl:px-32 min-h-screen bg-[#f7f5f0]">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-cyan-50 flex flex-col items-center justify-center py-8">
       <Navbar />
-      <div className="max-w-4xl mx-auto py-12">
-        <h1 className="text-4xl font-semibold mb-2">Make an enquiry</h1>
-        <div className="border-b w-1/4 border-blue-600 mb-4" />
-        <p className="text-slate-600 mb-6">We approach every relationship with a unique and invigorating perspective. Let us know your enquiry and our team will be in touch soon.</p>
-        <form className="bg-white shadow-lg rounded-lg p-8" onSubmit={handleSubmit} noValidate>
-          <h2 className="text-2xl font-semibold mb-4 text-center">Contact us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block mb-1 font-medium">First name<span className="text-red-500">*</span></label>
-              <input name="firstName" value={form.firstName} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-              {errors.firstName && <span className="text-red-500 text-xs">{errors.firstName}</span>}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-8 relative"
+      >
+        {/* Animated Logo */}
+        <div className="flex flex-col items-center mb-8">
+          <div ref={lottieRef} style={{ width: 100, height: 100 }} />
+          <img src="/LUMAR QI.webp" alt="Lumar QI Logo" className="w-20 h-20 rounded-full shadow-lg mt-2" />
+        </div>
+        <h2 className="text-3xl font-bold text-center mb-6 text-indigo-700">Contact Us</h2>
+        {submitted ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-green-600 font-semibold py-8"
+          >
+            Thank you for contacting us! We'll get back to you soon.
+          </motion.div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium">First Name</label>
+                <input name="firstName" value={form.firstName} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+                {errors.firstName && <span className="text-red-500 text-xs">{errors.firstName}</span>}
+              </div>
+              <div>
+                <label className="block font-medium">Last Name</label>
+                <input name="lastName" value={form.lastName} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+                {errors.lastName && <span className="text-red-500 text-xs">{errors.lastName}</span>}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium">Email</label>
+                <input name="email" value={form.email} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+                {errors.email && <span className="text-red-500 text-xs">{errors.email}</span>}
+              </div>
+              <div>
+                <label className="block font-medium">Phone</label>
+                <input name="phone" value={form.phone} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+                {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}
+              </div>
             </div>
             <div>
-              <label className="block mb-1 font-medium">Last name<span className="text-red-500">*</span></label>
-              <input name="lastName" value={form.lastName} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-              {errors.lastName && <span className="text-red-500 text-xs">{errors.lastName}</span>}
-            </div>
-            <div>
-              <label className="block mb-1 font-medium">Work Email<span className="text-red-500">*</span></label>
-              <input name="email" type="email" value={form.email} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-              {errors.email && <span className="text-red-500 text-xs">{errors.email}</span>}
-            </div>
-            <div>
-              <label className="block mb-1 font-medium">Phone number<span className="text-red-500">*</span></label>
-              <input name="phone" value={form.phone} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-              {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}
-            </div>
-            <div>
-              <label className="block mb-1 font-medium">Company name<span className="text-red-500">*</span></label>
-              <input name="company" value={form.company} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
+              <label className="block font-medium">Company</label>
+              <input name="company" value={form.company} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
               {errors.company && <span className="text-red-500 text-xs">{errors.company}</span>}
             </div>
-            <div>
-              <label className="block mb-1 font-medium">Country<span className="text-red-500">*</span></label>
-              <select name="country" value={form.country} onChange={handleChange} required className="w-full border rounded px-3 py-2">
-                <option value="">Please Select</option>
-                {countries.map(c => <option key={c} value={c}>{c}</option>)}
-              </select>
-              {errors.country && <span className="text-red-500 text-xs">{errors.country}</span>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium">Country</label>
+                <select name="country" value={form.country} onChange={handleChange} className="w-full px-4 py-2 border rounded-md">
+                  <option value="">Select Country</option>
+                  {countries.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+                {errors.country && <span className="text-red-500 text-xs">{errors.country}</span>}
+              </div>
+              <div>
+                <label className="block font-medium">Job Title</label>
+                <input name="jobTitle" value={form.jobTitle} onChange={handleChange} className="w-full px-4 py-2 border rounded-md" />
+                {errors.jobTitle && <span className="text-red-500 text-xs">{errors.jobTitle}</span>}
+              </div>
             </div>
-            <div>
-              <label className="block mb-1 font-medium">Job title<span className="text-red-500">*</span></label>
-              <input name="jobTitle" value={form.jobTitle} onChange={handleChange} required className="w-full border rounded px-3 py-2" />
-              {errors.jobTitle && <span className="text-red-500 text-xs">{errors.jobTitle}</span>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium">Contact About</label>
+                <select name="contactAbout" value={form.contactAbout} onChange={handleChange} className="w-full px-4 py-2 border rounded-md">
+                  <option value="">Select</option>
+                  {contactAboutOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+                {errors.contactAbout && <span className="text-red-500 text-xs">{errors.contactAbout}</span>}
+              </div>
+              <div>
+                <label className="block font-medium">Contact Preference</label>
+                <select name="contactPreference" value={form.contactPreference} onChange={handleChange} className="w-full px-4 py-2 border rounded-md">
+                  <option value="">Select</option>
+                  {contactPreferences.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+                {errors.contactPreference && <span className="text-red-500 text-xs">{errors.contactPreference}</span>}
+              </div>
             </div>
-            <div>
-              <label className="block mb-1 font-medium">Contact About<span className="text-red-500">*</span></label>
-              <select name="contactAbout" value={form.contactAbout} onChange={handleChange} required className="w-full border rounded px-3 py-2">
-                <option value="">Please Select</option>
-                {contactAboutOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-              </select>
-              {errors.contactAbout && <span className="text-red-500 text-xs">{errors.contactAbout}</span>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-medium">Industry</label>
+                <select name="industry" value={form.industry} onChange={handleChange} className="w-full px-4 py-2 border rounded-md">
+                  <option value="">Select Industry</option>
+                  {industries.map(ind => <option key={ind} value={ind}>{ind}</option>)}
+                </select>
+                {errors.industry && <span className="text-red-500 text-xs">{errors.industry}</span>}
+              </div>
+              <div>
+                <label className="block font-medium">Description</label>
+                <textarea name="description" value={form.description} onChange={handleChange} rows={3} className="w-full px-4 py-2 border rounded-md" />
+                {errors.description && <span className="text-red-500 text-xs">{errors.description}</span>}
+              </div>
             </div>
-            <div>
-              <label className="block mb-1 font-medium">Contact Preference<span className="text-red-500">*</span></label>
-              <select name="contactPreference" value={form.contactPreference} onChange={handleChange} required className="w-full border rounded px-3 py-2">
-                <option value="">Please Select</option>
-                {contactPreferences.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-              </select>
-              {errors.contactPreference && <span className="text-red-500 text-xs">{errors.contactPreference}</span>}
-            </div>
-            <div>
-              <label className="block mb-1 font-medium">Industry<span className="text-red-500">*</span></label>
-              <select name="industry" value={form.industry} onChange={handleChange} required className="w-full border rounded px-3 py-2">
-                <option value="">Please Select</option>
-                {industries.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-              </select>
-              {errors.industry && <span className="text-red-500 text-xs">{errors.industry}</span>}
-            </div>
-          </div>
-          <div className="mb-4">
-            <label className="block mb-1 font-medium">Description<span className="text-red-500">*</span></label>
-            <textarea name="description" value={form.description} onChange={handleChange} required className="w-full border rounded px-3 py-2" rows={4} />
-            {errors.description && <span className="text-red-500 text-xs">{errors.description}</span>}
-          </div>
-          <div className="mb-4 flex justify-center">
-            {/* Placeholder for reCAPTCHA */}
-            <div className="bg-gray-100 border rounded p-4 w-64 flex flex-col items-center">
-              <span className="text-gray-500 mb-2">protected by reCAPTCHA</span>
-              <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" className="w-12 h-12" />
-            </div>
-          </div>
-          <div className="mb-2 text-xs text-gray-600">
-            By clicking 'Submit' you agree to our <a href="#" className="text-blue-600 underline">Terms & Conditions</a> and consent to us collecting your details for the purposes of your enquiry. Visit our <a href="#" className="text-blue-600 underline">privacy policy</a> for more information about our services, how we may use, process and share your personal data, including information on your rights in respect of your personal data and how you can unsubscribe from future marketing communications. Our services are intended for corporate subscribers and you warrant that the email address submitted is your corporate email address.
-          </div>
-          <button type="submit" className="bg-orange-500 text-white px-6 py-2 rounded mt-4 hover:bg-orange-600">Submit</button>
-        </form>
-      </div>
-    </main>
+            <button
+              type="submit"
+              className="w-full py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition"
+            >
+              Submit
+            </button>
+          </form>
+        )}
+      </motion.div>
+    </div>
   );
 }
- 
+

@@ -51,12 +51,12 @@ app.post('/api/request-demo', async (req, res) => {
     await DemoRequest.create({ name, email, message });
 
     // Email HTML with logo and banner
-    const logoUrl = 'https://your-domain.com/LUMAR%20QI.webp'; // Update to your actual deployed domain
+    const logoUrl = 'https://lumarqi.onrender.com/LUMAR%20QI.png'; // Update to your actual deployed domain
     const bannerStyle = 'background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%); color: #fff; padding: 24px 0; text-align: center; font-size: 1.5rem; font-family: Arial, sans-serif;';
     const html = `
-      <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;font-family:Arial,sans-serif;">
-        <div style="background:#fff;padding:24px 0;text-align:center;">
-          <img src="${logoUrl}" alt="Lumar QI Logo" style="height:60px;"/>
+      <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;font-family:Arial,sans-serif;background:#fff;">
+        <div style="padding:32px 0 16px 0;text-align:center;">
+          <img src="${logoUrl}" alt="Lumar QI Logo" style="width:80px;height:80px;background:#fff;border-radius:12px;object-fit:contain;box-shadow:0 2px 8px #e5e7eb;display:inline-block;"/>
         </div>
         <div style="${bannerStyle}">
           <strong>New Demo Request Received</strong>
