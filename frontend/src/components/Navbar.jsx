@@ -12,6 +12,7 @@ import imgManufacturing from "../assets/Menu-navigation-Impact-3.webp";
 import imgLifeSciences from "../assets/Menu-navigation-Impact-4.webp";
 import imgTech from "../assets/Menu-navigation-Impact-5.webp";
 
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [serviceOpen, setServiceOpen] = useState(false);
@@ -25,6 +26,13 @@ export default function Navbar() {
   const [demoOpen, setDemoOpen] = useState(false);
   const [demoName, setDemoName] = useState("");
   const [demoEmail, setDemoEmail] = useState("");
+  const [demoPhone, setDemoPhone] = useState("");
+  const [demoCompany, setDemoCompany] = useState("");
+  const [demoCountry, setDemoCountry] = useState("");
+  const [demoJobTitle, setDemoJobTitle] = useState("");
+  const [demoContactAbout, setDemoContactAbout] = useState("");
+  const [demoContactPreference, setDemoContactPreference] = useState("");
+  const [demoIndustry, setDemoIndustry] = useState("");
   const [demoMessage, setDemoMessage] = useState("");
   const [demoStatus, setDemoStatus] = useState("");
   const [demoLoading, setDemoLoading] = useState(false);
@@ -183,12 +191,30 @@ export default function Navbar() {
       const res = await fetch("/api/request-demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: demoName, email: demoEmail, message: demoMessage }),
+        body: JSON.stringify({
+          name: demoName,
+          email: demoEmail,
+          phone: demoPhone,
+          company: demoCompany,
+          country: demoCountry,
+          jobTitle: demoJobTitle,
+          contactAbout: demoContactAbout,
+          contactPreference: demoContactPreference,
+          industry: demoIndustry,
+          message: demoMessage,
+        }),
       });
       if (res.ok) {
         setDemoStatus("Thank you! We'll contact you soon.");
         setDemoName("");
         setDemoEmail("");
+        setDemoPhone("");
+        setDemoCompany("");
+        setDemoCountry("");
+        setDemoJobTitle("");
+        setDemoContactAbout("");
+        setDemoContactPreference("");
+        setDemoIndustry("");
         setDemoMessage("");
       } else {
         setDemoStatus("Something went wrong. Please try again.");
@@ -630,79 +656,93 @@ export default function Navbar() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.97, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
+            exit={{ scale: 0.97, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg mx-auto border border-slate-200"
+            className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-gradient-to-br from-[#0f1e13] to-[#0a1917]"
+            style={{ margin: '40px' }}
           >
-            {/* Animated top bar */}
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 0.7, ease: 'easeInOut' }}
-              className="h-1 rounded-t-2xl bg-gradient-to-r from-indigo-500 via-cyan-400 to-blue-400 mb-6"
-            />
-            <h2 className="text-3xl font-bold mb-2 text-center text-indigo-700">Request a Demo</h2>
-            <p className="text-center text-slate-500 mb-6">Fill out the form and our team will get in touch with you soon.</p>
-            <form onSubmit={handleDemoSubmit} className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Your Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  value={demoName}
-                  onChange={e => setDemoName(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Your Email</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={demoEmail}
-                  onChange={e => setDemoEmail(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Message (optional)</label>
-                <textarea
-                  placeholder="Tell us about your needs..."
-                  value={demoMessage}
-                  onChange={e => setDemoMessage(e.target.value)}
-                  rows={3}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
-                />
-              </div>
-              <motion.button
-                type="submit"
-                disabled={demoLoading}
-                whileTap={{ scale: 0.97 }}
-                className="w-full py-3 bg-gradient-to-r from-indigo-500 via-cyan-400 to-blue-400 text-white rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition disabled:opacity-60"
-              >
-                {demoLoading ? "Sending..." : "Submit"}
-              </motion.button>
-              {demoStatus && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-indigo-600 text-sm mt-2"
-                >
-                  {demoStatus}
-                </motion.div>
-              )}
-            </form>
             <button
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 text-2xl font-bold focus:outline-none"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-100 text-2xl font-bold focus:outline-none z-10"
               onClick={() => setDemoOpen(false)}
               aria-label="Close"
             >
               ×
             </button>
+            <div className="flex flex-col md:flex-row">
+              {/* Left: Heading and description */}
+              <div className="flex-1 flex flex-col justify-center px-8 py-10 md:py-14 bg-transparent">
+                {/* Optional avatars row */}
+                <div className="flex items-center mb-4">
+                  <div className="flex -space-x-2">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar1" className="w-8 h-8 rounded-full border-2 border-white" />
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar2" className="w-8 h-8 rounded-full border-2 border-white" />
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="avatar3" className="w-8 h-8 rounded-full border-2 border-white" />
+                  </div>
+                  <span className="ml-3 text-sm text-green-200 font-medium">Join community of 1m+ founders</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-200 leading-tight">Ready to<br />Transform Your<br />Digital Experience?</h2>
+                <p className="text-lg text-green-100/80 mb-2 md:mb-0">Let our design team craft a website that elevates your brand. Book a free session today.</p>
+              </div>
+              {/* Right: Form */}
+              <div className="flex-1 flex items-center justify-center px-6 md:px-10 py-10 bg-black/10">
+                <form onSubmit={handleDemoSubmit} className="w-full max-w-md space-y-6 bg-black/30 rounded-2xl p-8 border border-green-900/40 shadow-lg">
+                  <div>
+                    <label className="block text-green-100 font-medium mb-1">Name</label>
+                    <input
+                      type="text"
+                      placeholder="Eden Johnson"
+                      value={demoName}
+                      onChange={e => setDemoName(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-green-100 font-medium mb-1">Email</label>
+                    <input
+                      type="email"
+                      placeholder="Eden@example.com"
+                      value={demoEmail}
+                      onChange={e => setDemoEmail(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-green-100 font-medium mb-1">Message</label>
+                    <textarea
+                      placeholder="Write your message here..."
+                      value={demoMessage}
+                      onChange={e => setDemoMessage(e.target.value)}
+                      rows={3}
+                      className="w-full px-4 py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition"
+                    />
+                  </div>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                    <span className="text-xs text-green-300/80">By submitting, you agree to our <span className="font-semibold underline">Terms</span> and <span className="font-semibold underline">Privacy Policy</span>.</span>
+                    <motion.button
+                      type="submit"
+                      disabled={demoLoading}
+                      whileTap={{ scale: 0.97 }}
+                      className="mt-2 md:mt-0 px-8 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold text-base shadow-md transition disabled:opacity-60"
+                    >
+                      {demoLoading ? "Sending..." : "Submit"}
+                    </motion.button>
+                  </div>
+                  {demoStatus && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-center text-green-400 text-sm mt-2"
+                    >
+                      {demoStatus}
+                    </motion.div>
+                  )}
+                </form>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}

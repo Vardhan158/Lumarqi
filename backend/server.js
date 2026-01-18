@@ -50,9 +50,8 @@ app.post('/api/request-demo', async (req, res) => {
   try {
     await DemoRequest.create({ name, email, message });
 
-    // Email HTML with logo and more dynamic animated banner
+    // Email HTML with logo and more dynamic animated banner and more info
     const logoUrl = 'https://lumarqi.onrender.com/lumarqi.jpg';
-    // Use a vibrant animated gradient with moving stripes for the banner
     const bannerStyle = `
       background: linear-gradient(270deg, #6366f1, #a5b4fc, #06b6d4, #6366f1);
       background-size: 800% 800%;
@@ -70,7 +69,6 @@ app.post('/api/request-demo', async (req, res) => {
       box-shadow: 0 4px 24px 0 #a5b4fc33;
       text-shadow: 0 2px 8px #6366f1cc;
     `;
-    // Add keyframes for the animation (inline for email compatibility)
     const keyframes = `
       <style>
         @keyframes bannerGradientMove {
@@ -80,6 +78,16 @@ app.post('/api/request-demo', async (req, res) => {
         }
       </style>
     `;
+    // Collect more info fields (add phone, company, etc. if present)
+    const extraInfo = [];
+    if (req.body.phone) extraInfo.push(`<p><strong>Phone:</strong> ${req.body.phone}</p>`);
+    if (req.body.company) extraInfo.push(`<p><strong>Company:</strong> ${req.body.company}</p>`);
+    if (req.body.country) extraInfo.push(`<p><strong>Country:</strong> ${req.body.country}</p>`);
+    if (req.body.jobTitle) extraInfo.push(`<p><strong>Job Title:</strong> ${req.body.jobTitle}</p>`);
+    if (req.body.contactAbout) extraInfo.push(`<p><strong>Contact About:</strong> ${req.body.contactAbout}</p>`);
+    if (req.body.contactPreference) extraInfo.push(`<p><strong>Contact Preference:</strong> ${req.body.contactPreference}</p>`);
+    if (req.body.industry) extraInfo.push(`<p><strong>Industry:</strong> ${req.body.industry}</p>`);
+    
     const html = `
       ${keyframes}
       <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;font-family:Arial,sans-serif;background:#fff;">
@@ -92,6 +100,7 @@ app.post('/api/request-demo', async (req, res) => {
         <div style="padding:32px 24px 24px 24px;background:#f9fafb;">
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
+          ${extraInfo.join('')}
           <p><strong>Message:</strong> ${message || ''}</p>
         </div>
       </div>
