@@ -1,0 +1,108 @@
+{
+  "svg": {
+    "viewBox": "0 0 600 600",
+    "preserveAspectRatio": "xMidYMid meet"
+  },
+
+  "paths": [
+    {
+      "id": "outer-arc",
+      "type": "stroke-draw",
+      "d": "M90 300A210 210 0 1 1 510 300",
+      "stroke": {
+        "color": "#1f2933",
+        "width": 2,
+        "linecap": "round",
+        "linejoin": "round"
+      },
+      "animation": {
+        "mode": "draw-erase",
+        "direction": "forward-reverse",
+        "duration": 2800,
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": 0,
+        "loop": true
+      }
+    },
+
+    {
+      "id": "middle-arc",
+      "type": "stroke-draw",
+      "d": "M150 300A150 150 0 1 1 450 300",
+      "stroke": {
+        "color": "#1f2933",
+        "width": 2,
+        "linecap": "round",
+        "linejoin": "round"
+      },
+      "animation": {
+        "mode": "draw-erase",
+        "direction": "forward-reverse",
+        "duration": 2400,
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": 350,
+        "loop": true
+      }
+    },
+
+    {
+      "id": "inner-arc",
+      "type": "stroke-draw",
+      "d": "M210 300A90 90 0 1 1 390 300",
+      "stroke": {
+        "color": "#1f2933",
+        "width": 2,
+        "linecap": "round",
+        "linejoin": "round"
+      },
+      "animation": {
+        "mode": "draw-erase",
+        "direction": "forward-reverse",
+        "duration": 2000,
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": 700,
+        "loop": true
+      }
+    },
+
+    {
+      "id": "center-ring",
+      "type": "stroke-draw",
+      "d": "M300 270A30 30 0 1 1 299.9 270",
+      "stroke": {
+        "color": "#1f2933",
+        "width": 2,
+        "linecap": "round",
+        "linejoin": "round"
+      },
+      "animation": {
+        "mode": "draw-erase",
+        "direction": "forward-reverse",
+        "duration": 1600,
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": 1000,
+        "loop": true
+      }
+    },
+
+    {
+      "id": "direction-frame",
+      "type": "stroke-draw",
+      "d": "M360 120H520V280L360 120Z",
+      "stroke": {
+        "color": "#1f2933",
+        "width": 2,
+        "linecap": "round",
+        "linejoin": "round"
+      },
+      "animation": {
+        "mode": "draw-erase",
+        "direction": "forward-reverse",
+        "duration": 2200,
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "delay": 1300,
+        "loop": true
+      }
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import InsightsFeaturedSection from '../components/InsightsFeaturedSection'
 import AwardsRecognitions from '../components/AwardsRecognitions'
 import CareersCTASection from '../components/CareersCTASection'
 import Footer from '../components/Footer'
+import SVG from './SVG'
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       <InsightsFeaturedSection />
       <AwardsRecognitions />
       <CareersCTASection />
+      <SVG/>
       <Footer />
     </div>
   )
