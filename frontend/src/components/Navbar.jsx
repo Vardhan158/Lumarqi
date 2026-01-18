@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -634,46 +633,71 @@ export default function Navbar() {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md mx-auto"
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg mx-auto border border-slate-200"
           >
-            <h2 className="text-2xl font-semibold mb-4 text-slate-900">Request a Demo</h2>
-            <form onSubmit={handleDemoSubmit} className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={demoName}
-                onChange={e => setDemoName(e.target.value)}
-                required
-                className="w-full px-4 py-2 border rounded-md"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={demoEmail}
-                onChange={e => setDemoEmail(e.target.value)}
-                required
-                className="w-full px-4 py-2 border rounded-md"
-              />
-              <textarea
-                placeholder="Message (optional)"
-                value={demoMessage}
-                onChange={e => setDemoMessage(e.target.value)}
-                rows={3}
-                className="w-full px-4 py-2 border rounded-md"
-              />
-              <button
+            {/* Animated top bar */}
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: '100%' }}
+              transition={{ duration: 0.7, ease: 'easeInOut' }}
+              className="h-1 rounded-t-2xl bg-gradient-to-r from-indigo-500 via-cyan-400 to-blue-400 mb-6"
+            />
+            <h2 className="text-3xl font-bold mb-2 text-center text-indigo-700">Request a Demo</h2>
+            <p className="text-center text-slate-500 mb-6">Fill out the form and our team will get in touch with you soon.</p>
+            <form onSubmit={handleDemoSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Your Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  value={demoName}
+                  onChange={e => setDemoName(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Your Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={demoEmail}
+                  onChange={e => setDemoEmail(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Message (optional)</label>
+                <textarea
+                  placeholder="Tell us about your needs..."
+                  value={demoMessage}
+                  onChange={e => setDemoMessage(e.target.value)}
+                  rows={3}
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+                />
+              </div>
+              <motion.button
                 type="submit"
                 disabled={demoLoading}
-                className="w-full py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition"
+                whileTap={{ scale: 0.97 }}
+                className="w-full py-3 bg-gradient-to-r from-indigo-500 via-cyan-400 to-blue-400 text-white rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition disabled:opacity-60"
               >
                 {demoLoading ? "Sending..." : "Submit"}
-              </button>
+              </motion.button>
               {demoStatus && (
-                <div className="text-center text-sm mt-2 text-indigo-600">{demoStatus}</div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center text-indigo-600 text-sm mt-2"
+                >
+                  {demoStatus}
+                </motion.div>
               )}
             </form>
             <button
-              className="absolute top-4 right-4 text-slate-500 hover:text-slate-900 text-xl"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 text-2xl font-bold focus:outline-none"
               onClick={() => setDemoOpen(false)}
               aria-label="Close"
             >

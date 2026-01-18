@@ -50,16 +50,44 @@ app.post('/api/request-demo', async (req, res) => {
   try {
     await DemoRequest.create({ name, email, message });
 
-    // Email HTML with logo and banner
-    const logoUrl = 'https://lumarqi.onrender.com/lumarqi.jpg'; // Uses your deployed public image (JPG)
-    const bannerStyle = 'background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%); color: #fff; padding: 24px 0; text-align: center; font-size: 1.5rem; font-family: Arial, sans-serif;';
+    // Email HTML with logo and more dynamic animated banner
+    const logoUrl = 'https://lumarqi.onrender.com/lumarqi.jpg';
+    // Use a vibrant animated gradient with moving stripes for the banner
+    const bannerStyle = `
+      background: linear-gradient(270deg, #6366f1, #a5b4fc, #06b6d4, #6366f1);
+      background-size: 800% 800%;
+      color: #fff;
+      padding: 36px 0 36px 0;
+      text-align: center;
+      font-size: 2.2rem;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0.07em;
+      position: relative;
+      overflow: hidden;
+      animation: bannerGradientMove 4s ease-in-out infinite;
+      border-bottom: 4px solid #6366f1;
+      box-shadow: 0 4px 24px 0 #a5b4fc33;
+      text-shadow: 0 2px 8px #6366f1cc;
+    `;
+    // Add keyframes for the animation (inline for email compatibility)
+    const keyframes = `
+      <style>
+        @keyframes bannerGradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      </style>
+    `;
     const html = `
+      ${keyframes}
       <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;font-family:Arial,sans-serif;background:#fff;">
         <div style="padding:32px 0 16px 0;text-align:center;">
           <img src="${logoUrl}" alt="Lumar QI Logo" width="180" height="180" style="display:block;margin:auto;background:#fff;border-radius:16px;" />
         </div>
-        <div style="${bannerStyle}">
-          <strong>New Demo Request Received</strong>
+        <div style='${bannerStyle}'>
+          <span>🚀 New Demo Request Received 🚀</span>
         </div>
         <div style="padding:32px 24px 24px 24px;background:#f9fafb;">
           <p><strong>Name:</strong> ${name}</p>
