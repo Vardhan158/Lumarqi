@@ -8,7 +8,7 @@ export default function People() {
       <Navbar />
 
       {/* ================= HERO SECTION ================= */}
-      <section className="relative h-screen w-full">
+      <section className="relative min-h-[60vh] w-full flex items-center justify-center">
         {/* Background Image (UNTOUCHED) */}
         <img
           src={peopleBg}
@@ -29,8 +29,8 @@ export default function People() {
         />
 
         {/* Content */}
-        <div className="relative z-10 flex h-full items-center">
-          <div className="w-full px-6 md:px-16 lg:px-24 xl:px-32">
+        <div className="relative z-10 flex h-full items-center justify-center">
+          <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
             <div className="max-w-3xl text-white">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light">
                 People
@@ -56,7 +56,7 @@ export default function People() {
       </section>
 
       {/* ================= OUR PEOPLE ================= */}
-      <section className="bg-white px-6 md:px-16 lg:px-24 xl:px-32 py-32">
+      <section className="bg-white px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-16 md:py-24 lg:py-32">
         <div className="max-w-5xl mx-auto text-center">
           {/* Title */}
           <h2 className="text-4xl md:text-5xl font-light text-slate-900">
@@ -90,10 +90,10 @@ export default function People() {
       </section>
 
       {/* ================= OUR CULTURE ================= */}
-      <section className="bg-[#f7f1e6] px-6 md:px-16 lg:px-24 xl:px-32 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="bg-[#f7f1e6] px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-20 items-center">
           {/* ================= LEFT: VIDEO ================= */}
-          <div className="relative w-full aspect-video bg-black overflow-hidden">
+          <div className="relative w-full aspect-video bg-black overflow-hidden rounded-xl">
             <iframe
               width="560"
               height="315"
@@ -107,7 +107,7 @@ export default function People() {
           </div>
 
           {/* ================= RIGHT: CONTENT ================= */}
-          <div className="max-w-xl">
+          <div className="max-w-xl w-full mx-auto">
             {/* Eyebrow */}
             <p className="text-xs tracking-[0.3em] text-slate-600 uppercase mb-6">
               Be part of our success
@@ -139,9 +139,9 @@ export default function People() {
             {/* CTA */}
             <a
               href="#"
-              className="inline-flex items-center gap-4 mt-10 px-8 py-4 rounded-full
+              className="inline-flex items-center gap-4 mt-8 px-6 py-3 rounded-full
                    bg-blue-600 text-white font-medium hover:bg-blue-700
-                   transition-all"
+                   transition-all text-base md:text-lg"
             >
               Explore our careers
               <span className="text-xl">→</span>
@@ -151,7 +151,7 @@ export default function People() {
       </section>
 
       {/* ================= OUR LEADERSHIP ================= */}
-<section className="bg-white px-6 md:px-16 lg:px-24 xl:px-32 py-32">
+<section className="bg-white px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-16 md:py-24 lg:py-32">
   <div className="max-w-6xl mx-auto text-center">
 
     {/* Title */}
@@ -179,7 +179,7 @@ export default function People() {
   </div>
 
   {/* ================= LEADERS GRID ================= */}
-  <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
+  <div className="mt-10 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 max-w-7xl mx-auto">
 
     {[
       { name: "Mike Danson", role: "Chief Executive Officer", img: "/leaders/mike.jpg" },
@@ -196,10 +196,10 @@ export default function People() {
     ].map((leader, index) => (
       <div
         key={index}
-        className="border border-slate-200 bg-white p-8 text-center"
+        className="border border-slate-200 bg-white p-6 md:p-8 text-center rounded-xl flex flex-col items-center"
       >
         {/* Avatar */}
-        <div className="mx-auto mb-6 w-40 h-40 rounded-full bg-slate-100 overflow-hidden">
+        <div className="mx-auto mb-4 md:mb-6 w-28 h-28 md:w-40 md:h-40 rounded-full bg-slate-100 overflow-hidden">
           <img
             src={leader.img}
             alt={leader.name}
@@ -208,12 +208,12 @@ export default function People() {
         </div>
 
         {/* Name */}
-        <h3 className="text-lg font-medium text-slate-900">
+        <h3 className="text-base md:text-lg font-medium text-slate-900">
           {leader.name}
         </h3>
 
         {/* Role */}
-        <p className="mt-2 text-sm text-slate-600">
+        <p className="mt-2 text-xs md:text-sm text-slate-600">
           {leader.role}
         </p>
       </div>
@@ -222,11 +222,11 @@ export default function People() {
   </div>
 </section>
 
-<section className="bg-white px-6 md:px-16 lg:px-24 xl:px-32 py-28">
+<section className="bg-white px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-12 md:py-20 lg:py-28">
   <div className="max-w-7xl mx-auto">
 
     {/* ===== Header ===== */}
-    <div className="grid lg:grid-cols-2 gap-10 items-start mb-16">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 items-start mb-10 md:mb-16">
 
       {/* Title */}
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-slate-900">
@@ -234,7 +234,7 @@ export default function People() {
       </h2>
 
       {/* Info box */}
-      <div className="bg-[#f7f1e6] p-8 max-w-xl lg:ml-auto">
+      <div className="bg-[#f7f1e6] p-6 md:p-8 max-w-xl w-full lg:ml-auto rounded-xl">
         <p className="text-slate-600 leading-relaxed text-sm md:text-base">
           Our Board of Directors oversee the company’s strategic direction,
           governance, and long-term performance, ensuring accountability to
@@ -243,7 +243,7 @@ export default function People() {
 
         <a
           href="#"
-          className="inline-flex items-center gap-3 mt-6 bg-blue-600 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-700 transition"
+          className="inline-flex items-center gap-3 mt-4 md:mt-6 bg-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium hover:bg-blue-700 transition"
         >
           Investors site
           <span className="text-lg">→</span>
@@ -252,9 +252,9 @@ export default function People() {
     </div>
 
     {/* ===== Dark Grid ===== */}
-    <div className="bg-[#1e2635] p-6 md:p-10">
+    <div className="bg-[#1e2635] p-4 sm:p-6 md:p-10 rounded-xl">
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/20 gap-4 md:gap-8">
 
         {[
           { name: "Murray Legg", role: "Non-Executive Chair", img: "/board/1.jpg" },
@@ -268,10 +268,10 @@ export default function People() {
         ].map((person, index) => (
           <div
             key={index}
-            className="border border-white/20 p-8 text-center text-white"
+            className="border border-white/20 p-4 md:p-8 text-center text-white rounded-xl flex flex-col items-center"
           >
             {/* Avatar */}
-            <div className="mx-auto mb-6 w-32 h-32 rounded-full bg-white overflow-hidden">
+            <div className="mx-auto mb-4 md:mb-6 w-20 h-20 md:w-32 md:h-32 rounded-full bg-white overflow-hidden">
               <img
                 src={person.img}
                 alt={person.name}
@@ -280,12 +280,12 @@ export default function People() {
             </div>
 
             {/* Name */}
-            <h3 className="text-base md:text-lg font-medium">
+            <h3 className="text-xs md:text-base font-medium">
               {person.name}
             </h3>
 
             {/* Role */}
-            <p className="mt-2 text-xs md:text-sm text-white/70">
+            <p className="mt-2 text-[10px] md:text-xs text-white/70">
               {person.role}
             </p>
           </div>
@@ -297,33 +297,33 @@ export default function People() {
   </div>
 </section>
 
-<footer className="bg-gradient-to-r from-[#0b1a24] to-[#0e2233] text-white">
+<footer className="bg-gradient-to-r from-[#0b1a24] to-[#0e2233] text-white text-xs md:text-sm">
       
       {/* ================= TOP ================= */}
-      <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 relative">
+      <div className="px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-10 md:py-16 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 relative">
 
           {/* Divider */}
           <div className="hidden lg:block absolute left-1/2 top-0 h-full w-px bg-white/10" />
 
           {/* LEFT */}
           <div>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="text-2xl font-semibold">GlobalData</span>
+            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-8">
+              <span className="text-lg md:text-2xl font-semibold">GlobalData</span>
             </div>
 
-            <h4 className="text-lg font-medium mb-2">
+            <h4 className="text-base md:text-lg font-medium mb-2">
               Company information
             </h4>
 
-            <p className="text-white/70 text-sm leading-relaxed max-w-lg">
+            <p className="text-white/70 leading-relaxed max-w-lg text-xs md:text-sm">
               Registered Office: John Carpenter House, John Carpenter Street,
               London, EC4Y 0AN, UK
               <br />
               Registered in England No. 03925319
             </p>
 
-            <button className="mt-8 inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-3 rounded-full font-medium hover:gap-4 transition-all">
+            <button className="mt-6 md:mt-8 inline-flex items-center gap-2 md:gap-3 bg-white text-slate-900 px-6 md:px-8 py-2 md:py-3 rounded-full font-medium hover:gap-4 transition-all text-xs md:text-sm">
               Contact us
               <span>→</span>
             </button>
@@ -331,16 +331,16 @@ export default function People() {
 
           {/* RIGHT */}
           <div className="flex flex-col justify-center">
-            <h3 className="text-2xl md:text-3xl font-light mb-8 max-w-md">
+            <h3 className="text-lg md:text-2xl font-light mb-4 md:mb-8 max-w-md">
               DECODED, your curated industry newsletter.
             </h3>
 
-            <button className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-3 rounded-full font-medium w-fit hover:gap-4 transition-all">
+            <button className="inline-flex items-center gap-2 md:gap-3 bg-white text-slate-900 px-6 md:px-8 py-2 md:py-3 rounded-full font-medium w-fit hover:gap-4 transition-all text-xs md:text-sm">
               Subscribe
               <span>→</span>
             </button>
 
-            <div className="mt-10 flex gap-6 text-white/60 text-sm">
+            <div className="mt-6 md:mt-10 flex gap-4 md:gap-6 text-white/60 text-xs md:text-sm">
               <a href="#" className="hover:text-white transition">
                 LinkedIn
               </a>
@@ -354,11 +354,11 @@ export default function People() {
       </div>
 
       {/* ================= BOTTOM ================= */}
-      <div className="border-t border-white/10 px-6 md:px-16 lg:px-24 xl:px-32 py-6 relative">
+      <div className="border-t border-white/10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-4 md:py-6 relative">
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 text-white/60">
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2 md:gap-4">
             <a href="#" className="hover:text-white transition">
               Modern Slavery Statement
             </a>
@@ -381,7 +381,7 @@ export default function People() {
         {/* Back to top */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="absolute right-6 top-1/2 -translate-y-1/2 md:right-16 bg-white/10 border border-white/20 w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition"
+          className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 md:right-16 bg-white/10 border border-white/20 w-8 h-8 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-white/20 transition"
           aria-label="Back to top"
         >
           ↑

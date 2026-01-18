@@ -1,10 +1,13 @@
-
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const Contact = require('./models/Contact');
+
 const Newsletter = require('./models/Newsletter');
+
+const DemoRequest = require('./models/DemoRequest');
+const transporter = require('./mailer');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,6 +37,55 @@ app.post('/api/newsletter', async (req, res) => {
     return res.status(200).json({ message: 'Subscribed successfully.' });
   } catch (err) {
     console.error('Newsletter subscription error:', err);
+    return res.status(500).json({ error: 'Server error. Please try again later.' });
+  }
+});
+
+// Request Demo endpoint
+app.post('/api/request-demo', async (req, res) => {
+  const { name, email, message } = req.body;
+  if (!name || !email) {
+    return res.status(400).json({ error: 'Name and email are required.' });
+  }
+  try {
+    await DemoRequest.create({ name, email, message });
+
+    // Email HTML with logo and banner
+    const logoUrl = 'https://your-domain.com/LUMAR%20QI.webp'; // Update to your actual deployed domain
+    const bannerStyle = 'background: linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%); color: #fff; padding: 24px 0; text-align: center; font-size: 1.5rem; font-family: Arial, sans-serif;';
+    const html = `
+      <div style="max-width:600px;margin:auto;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;font-family:Arial,sans-serif;">
+        <div style="background:#fff;padding:24px 0;text-align:center;">
+          <img src="${logoUrl}" alt="Lumar QI Logo" style="height:60px;"/>
+        </div>
+        <div style="${bannerStyle}">
+          <strong>New Demo Request Received</strong>
+        </div>
+        <div style="padding:32px 24px 24px 24px;background:#f9fafb;">
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong> ${message || ''}</p>
+        </div>
+      </div>
+    `;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: 'New Demo Request Received',
+      html,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending demo request email:', error);
+      } else {
+        console.log('Demo request email sent:', info.response);
+      }
+    });
+
+    return res.status(200).json({ message: 'Demo request received.' });
+  } catch (err) {
+    console.error('Demo request error:', err);
     return res.status(500).json({ error: 'Server error. Please try again later.' });
   }
 });

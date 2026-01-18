@@ -1,14 +1,12 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
 
-// Service images
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import imgStrategy from "../assets/img-stratandadvisory.webp";
 import imgEngineer from "../assets/img-engineerdata.webp";
 import imgAIM from "../assets/img-diffwithaiml.webp";
 import imgOperational from "../assets/img-opinsights.webp";
 
-// Industry images
 import imgCPG from "../assets/cpg-retail-menu-image-1.webp";
 import imgBFS from "../assets/bfs-insurance-menu-image-1.webp";
 import imgManufacturing from "../assets/Menu-navigation-Impact-3.webp";
@@ -23,6 +21,15 @@ export default function Navbar() {
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [mobileIndustryOpen, setMobileIndustryOpen] = useState(false);
   const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
+
+  // Request Demo Modal State
+  const [demoOpen, setDemoOpen] = useState(false);
+  const [demoName, setDemoName] = useState("");
+  const [demoEmail, setDemoEmail] = useState("");
+  const [demoMessage, setDemoMessage] = useState("");
+  const [demoStatus, setDemoStatus] = useState("");
+  const [demoLoading, setDemoLoading] = useState(false);
+
 
   const services = [
     {
@@ -166,6 +173,31 @@ export default function Navbar() {
     setMobileServiceOpen(false);
     setMobileIndustryOpen(false);
     setMobileCompanyOpen(false);
+  };
+
+  // Handle Request Demo form submit
+  const handleDemoSubmit = async (e) => {
+    e.preventDefault();
+    setDemoLoading(true);
+    setDemoStatus("");
+    try {
+      const res = await fetch("/api/request-demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: demoName, email: demoEmail, message: demoMessage }),
+      });
+      if (res.ok) {
+        setDemoStatus("Thank you! We'll contact you soon.");
+        setDemoName("");
+        setDemoEmail("");
+        setDemoMessage("");
+      } else {
+        setDemoStatus("Something went wrong. Please try again.");
+      }
+    } catch {
+      setDemoStatus("Network error. Please try again.");
+    }
+    setDemoLoading(false);
   };
 
   return (
@@ -406,7 +438,10 @@ export default function Navbar() {
 
           {/* CTA & MOBILE BUTTON */}
           <div className="flex items-center gap-4">
-            <button className="hidden md:block px-7 py-3 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition">
+            <button
+              className="hidden md:block px-7 py-3 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition"
+              onClick={() => setDemoOpen(true)}
+            >
               Request demo
             </button>
             <button
@@ -576,13 +611,78 @@ export default function Navbar() {
                 Case Studies
               </Link>
 
-              <button className="w-full py-3 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition">
+              <button
+                className="w-full py-3 bg-indigo-600 text-white rounded-full font-medium hover:bg-indigo-700 transition"
+                onClick={() => setDemoOpen(true)}
+              >
                 Request demo
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+    {/* Request Demo Modal */}
+    <AnimatePresence>
+      {demoOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md mx-auto"
+          >
+            <h2 className="text-2xl font-semibold mb-4 text-slate-900">Request a Demo</h2>
+            <form onSubmit={handleDemoSubmit} className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                value={demoName}
+                onChange={e => setDemoName(e.target.value)}
+                required
+                className="w-full px-4 py-2 border rounded-md"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                value={demoEmail}
+                onChange={e => setDemoEmail(e.target.value)}
+                required
+                className="w-full px-4 py-2 border rounded-md"
+              />
+              <textarea
+                placeholder="Message (optional)"
+                value={demoMessage}
+                onChange={e => setDemoMessage(e.target.value)}
+                rows={3}
+                className="w-full px-4 py-2 border rounded-md"
+              />
+              <button
+                type="submit"
+                disabled={demoLoading}
+                className="w-full py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition"
+              >
+                {demoLoading ? "Sending..." : "Submit"}
+              </button>
+              {demoStatus && (
+                <div className="text-center text-sm mt-2 text-indigo-600">{demoStatus}</div>
+              )}
+            </form>
+            <button
+              className="absolute top-4 right-4 text-slate-500 hover:text-slate-900 text-xl"
+              onClick={() => setDemoOpen(false)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </>
   );
 }
