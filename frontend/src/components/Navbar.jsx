@@ -188,21 +188,24 @@ export default function Navbar() {
     setDemoLoading(true);
     setDemoStatus("");
     try {
+      // Debug: log the email value before sending
+      console.log("Sending demo request with email:", demoEmail);
+      const payload = {
+        name: demoName,
+        email: demoEmail,
+        phone: demoPhone,
+        company: demoCompany,
+        country: demoCountry,
+        jobTitle: demoJobTitle,
+        contactAbout: demoContactAbout,
+        contactPreference: demoContactPreference,
+        industry: demoIndustry,
+        message: demoMessage,
+      };
       const res = await fetch("/api/request-demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: demoName,
-          email: demoEmail,
-          phone: demoPhone,
-          company: demoCompany,
-          country: demoCountry,
-          jobTitle: demoJobTitle,
-          contactAbout: demoContactAbout,
-          contactPreference: demoContactPreference,
-          industry: demoIndustry,
-          message: demoMessage,
-        }),
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         setDemoStatus("Thank you! We'll contact you soon.");
@@ -219,8 +222,9 @@ export default function Navbar() {
       } else {
         setDemoStatus("Something went wrong. Please try again.");
       }
-    } catch {
+    } catch (err) {
       setDemoStatus("Network error. Please try again.");
+      console.error("Demo request error:", err);
     }
     setDemoLoading(false);
   };
@@ -660,8 +664,7 @@ export default function Navbar() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.97, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-gradient-to-br from-[#0f1e13] to-[#0a1917]"
-            style={{ margin: '40px' }}
+            className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-gradient-to-br from-[#0f1e13] to-[#0a1917] m-2 sm:m-6 md:m-10"
           >
             <button
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-100 text-2xl font-bold focus:outline-none z-10"
@@ -672,7 +675,7 @@ export default function Navbar() {
             </button>
             <div className="flex flex-col md:flex-row">
               {/* Left: Heading and description */}
-              <div className="flex-1 flex flex-col justify-center px-8 py-10 md:py-14 bg-transparent">
+              <div className="flex-1 flex flex-col justify-center px-4 py-8 sm:px-8 sm:py-10 md:py-14 bg-transparent">
                 {/* Optional avatars row */}
                 <div className="flex items-center mb-4">
                   <div className="flex -space-x-2">
@@ -680,53 +683,53 @@ export default function Navbar() {
                     <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="avatar2" className="w-8 h-8 rounded-full border-2 border-white" />
                     <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="avatar3" className="w-8 h-8 rounded-full border-2 border-white" />
                   </div>
-                  <span className="ml-3 text-sm text-green-200 font-medium">Join community of 1m+ founders</span>
+                  <span className="ml-3 text-xs sm:text-sm text-green-200 font-medium">Join community of 1m+ founders</span>
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-200 leading-tight">Ready to<br />Transform Your<br />Digital Experience?</h2>
-                <p className="text-lg text-green-100/80 mb-2 md:mb-0">Let our design team craft a website that elevates your brand. Book a free session today.</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-green-200 leading-tight">Ready to<br className="hidden sm:block"/>Transform Your<br className="hidden sm:block"/>Digital Experience?</h2>
+                <p className="text-base sm:text-lg text-green-100/80 mb-2 md:mb-0">Let our design team craft a website that elevates your brand. Book a free session today.</p>
               </div>
               {/* Right: Form */}
-              <div className="flex-1 flex items-center justify-center px-6 md:px-10 py-10 bg-black/10">
-                <form onSubmit={handleDemoSubmit} className="w-full max-w-md space-y-6 bg-black/30 rounded-2xl p-8 border border-green-900/40 shadow-lg">
+              <div className="flex-1 flex items-center justify-center px-2 sm:px-6 md:px-10 py-8 sm:py-10 bg-black/10">
+                <form onSubmit={handleDemoSubmit} className="w-full max-w-md space-y-4 sm:space-y-6 bg-black/30 rounded-2xl p-4 sm:p-8 border border-green-900/40 shadow-lg">
                   <div>
-                    <label className="block text-green-100 font-medium mb-1">Name</label>
+                    <label className="block text-green-100 font-medium mb-1 text-sm sm:text-base">Name</label>
                     <input
                       type="text"
                       placeholder="Eden Johnson"
                       value={demoName}
                       onChange={e => setDemoName(e.target.value)}
                       required
-                      className="w-full px-4 py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition text-sm sm:text-base"
                     />
                   </div>
                   <div>
-                    <label className="block text-green-100 font-medium mb-1">Email</label>
+                    <label className="block text-green-100 font-medium mb-1 text-sm sm:text-base">Email</label>
                     <input
                       type="email"
                       placeholder="Eden@example.com"
                       value={demoEmail}
                       onChange={e => setDemoEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition text-sm sm:text-base"
                     />
                   </div>
                   <div>
-                    <label className="block text-green-100 font-medium mb-1">Message</label>
+                    <label className="block text-green-100 font-medium mb-1 text-sm sm:text-base">Message</label>
                     <textarea
                       placeholder="Write your message here..."
                       value={demoMessage}
                       onChange={e => setDemoMessage(e.target.value)}
                       rows={3}
-                      className="w-full px-4 py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-transparent border border-green-700/40 rounded-lg text-green-100 placeholder-green-400 focus:ring-2 focus:ring-green-400 focus:outline-none transition text-sm sm:text-base"
                     />
                   </div>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                    <span className="text-xs text-green-300/80">By submitting, you agree to our <span className="font-semibold underline">Terms</span> and <span className="font-semibold underline">Privacy Policy</span>.</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <span className="text-xs sm:text-xs text-green-300/80">By submitting, you agree to our <span className="font-semibold underline">Terms</span> and <span className="font-semibold underline">Privacy Policy</span>.</span>
                     <motion.button
                       type="submit"
                       disabled={demoLoading}
                       whileTap={{ scale: 0.97 }}
-                      className="mt-2 md:mt-0 px-8 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold text-base shadow-md transition disabled:opacity-60"
+                      className="mt-2 sm:mt-0 px-6 sm:px-8 py-2 sm:py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold text-sm sm:text-base shadow-md transition disabled:opacity-60"
                     >
                       {demoLoading ? "Sending..." : "Submit"}
                     </motion.button>
@@ -735,7 +738,7 @@ export default function Navbar() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-center text-green-400 text-sm mt-2"
+                      className="text-center text-green-400 text-xs sm:text-sm mt-2"
                     >
                       {demoStatus}
                     </motion.div>
