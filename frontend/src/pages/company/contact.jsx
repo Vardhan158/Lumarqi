@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import { motion } from 'framer-motion';
-import lottie from 'lottie-web';
 
 const initialState = {
   firstName: '',
@@ -27,16 +26,6 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const lottieRef = React.useRef(null);
-
-  React.useEffect(() => {
-    lottie.loadAnimation({
-      container: lottieRef.current,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      path: '/lottie/strategy-advisory.json', // Use your preferred animation
-    });
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -93,7 +82,7 @@ export default function Contact() {
       >
         {/* Animated Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div ref={lottieRef} style={{ width: 100, height: 100 }} />
+          {/* <div ref={lottieRef} style={{ width: 100, height: 100 }} /> */}
           <img src="/LUMAR QI.webp" alt="Lumar QI Logo" className="w-20 h-20 rounded-full shadow-lg mt-2" />
         </div>
         <h2 className="text-3xl font-bold text-center mb-6 text-indigo-700">Contact Us</h2>
